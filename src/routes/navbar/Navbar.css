@@ -1,0 +1,57 @@
+.Nav-outer {
+  width: 100%;
+  min-height: 70px;
+  background: #242526;
+  border-bottom: 1.5px solid #393a3b;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Nav-inner {
+  width: min(96%, 650px);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Nav-h1 {
+  font-size: 3rem;
+  line-height: 70px;
+  user-select: none;
+}
+
+.Menu-DropDown {
+  position: relative;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Menu-DropDown:hover {
+  width: 100px;
+  height: 70px;
+}
+
+.Menu-DropDown-Items {
+  width: 150px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+
+  position: absolute;
+  top: 70px;
+  right: 0px;
+}

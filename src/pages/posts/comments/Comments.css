@@ -1,0 +1,13 @@
+.Comment {
+  display: flex;
+  flex-direction: row;
+
+  margin: 10px;
+}
+
+.Comment-text {
+  box-sizing: border-box;
+  max-width: 90%;
+  padding-left: 10px;
+  padding-bottom: 2px;
+}

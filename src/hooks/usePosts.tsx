@@ -1,0 +1,47 @@
+import { useState, useEffect } from "react";
+
+import firebase from "firebase/app";
+
+import { PostProps } from "../pages/posts/Post";
+
+export const useGetPrevPosts = (limit?: number) => {
+  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [toggle, setToggle] = useState(() => true);
+  const [end, setEnd] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (toggle) {
+      setToggle(false);
+
+      firebase
+        .firestore()
+        .collection("posts")
+        .orderBy("createdAt", "desc")
+        .startAfter(posts.length ? posts[posts.length - 1].createdAt : "")
+        .limit(limit || 4)
+        .get()
+        .then((snap) => {
+          if (snap.empty) setEnd(true);
+
+          setPosts((prev) => [
+            ...prev,
+            ...snap.docs.map((doc) => {
+              return {
+                postId: doc.id,
+                author: doc.get("author"),
+                content: doc.get("content"),
+                shiters: doc.get("shiters"),
+                createdAt: doc.get("createdAt").toDate(),
+                comments: doc.get("comments"),
+              };
+            }),
+          ]);
+        })
+        .catch((err) => {
+          setError(true);
+        });
+    }
+  }, [toggle]);
+  return { posts, setPosts, setToggle, end, error };
+};

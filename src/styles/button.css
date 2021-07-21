@@ -1,0 +1,31 @@
+.btn-thin {
+  height: 30px;
+  padding: 0 15px;
+  font-size: medium;
+}
+
+.btn-thick {
+  height: 45px;
+  padding: 0 25px;
+  font-size: large;
+}
+
+.btn-sharp {
+  border-radius: 7px;
+}
+
+.btn-round {
+  border-radius: 25px;
+}
+
+.btn-top {
+  margin-top: 5px;
+}
+
+.btn-left {
+  margin-left: 5px;
+}
+
+.btn-border {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}

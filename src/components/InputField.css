@@ -1,0 +1,12 @@
+.InputField {
+  display: block;
+
+  width: 100%;
+  background-color: #3a3b3c;
+  color: #e7e9ec;
+
+  border: none;
+  outline: none;
+  cursor: text;
+  resize: vertical;
+}

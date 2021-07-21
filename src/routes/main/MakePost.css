@@ -1,0 +1,4 @@
+.MakePost-button-set {
+  display: flex;
+  flex-direction: row-reverse;
+}

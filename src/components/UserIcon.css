@@ -1,0 +1,52 @@
+.UserIcon {
+  border-radius: 50%;
+  user-select: none;
+}
+
+.UserIcon-hover {
+  cursor: pointer;
+}
+.UserIcon-hover:hover {
+  opacity: 0.6;
+}
+
+.UserIcon-withName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.UserIcon-Name {
+  height: 100%;
+  margin-left: 10px;
+}
+
+/* 
+.UserIcon-DropDown {
+  position: relative;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: blue;
+} */
+
+/* .UserIcon-DropDown:hover {
+  width: 100px;
+  height: 70px;
+} */
+
+/* .UserIcon-DropDown-Items {
+  width: 150px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+
+  position: absolute;
+  top: 70px;
+  right: 0px;
+} */ ;
