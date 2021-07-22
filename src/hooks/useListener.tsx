@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import firebase from "firebase/app";
 
@@ -9,8 +9,6 @@ export const useListener = (
   setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>
 ) => {
   useEffect(() => {
-    if (!posts.length) return;
-
     return firebase
       .firestore()
       .collection("activities")
@@ -38,7 +36,35 @@ export const useListener = (
                 ]);
               });
           } else if (actionType === "delete") {
+            if (!posts.map((post) => post.postId).includes(postId)) return;
+
             setPosts((prev) => prev.filter((post) => post.postId !== postId));
+          } else if (actionType === "edit") {
+            if (!posts.map((post) => post.postId).includes(postId)) return;
+
+            firebase
+              .firestore()
+              .collection("posts")
+              .doc(postId)
+              .get()
+              .then((editedPost) => {
+                if (
+                  posts.find(
+                    (post) => post.content === editedPost.get("content")
+                  )
+                )
+                  return;
+
+                setPosts((prev) =>
+                  prev.map((post) => {
+                    if (post.postId !== postId) return post;
+                    return {
+                      ...post,
+                      content: editedPost.get("content"),
+                    };
+                  })
+                );
+              });
           }
         });
       });
