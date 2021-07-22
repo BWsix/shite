@@ -5,9 +5,7 @@ import { signIn } from "./auth";
 import "./Login.css";
 import "../../styles/button.css";
 
-interface LoginProps {}
-
-export const Login: React.FC<LoginProps> = ({}) => {
+export const Login: React.FC = () => {
   return (
     <div className="Login">
       <h1 className="Login-title">Shite.</h1>

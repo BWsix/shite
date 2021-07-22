@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import firebase from "firebase/app";
+import { db } from "../App";
 
 import { CommentProps } from "../pages/posts/comments/Comment";
 
@@ -8,18 +8,13 @@ export const useGetComment = (commentId?: string) => {
   const [comment, setComment] = useState<CommentProps>();
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection("comments")
+    db.collection("comments")
       .doc(commentId)
       .get()
       .then((doc) => {
         setComment({
+          ...(doc.data() as CommentProps),
           commentId: doc.id,
-          author: doc.get("author"),
-          postId: doc.get("postId"),
-          content: doc.get("content"),
-          shiters: doc.get("shiters"),
           createdAt: doc.get("createdAt").toDate(),
         });
       });

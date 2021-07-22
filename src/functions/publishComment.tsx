@@ -1,13 +1,12 @@
 import firebase from "firebase/app";
+import { db } from "../App";
 
 export const publishComment = (
   content: string,
   uid: string,
   postId: string
 ) => {
-  firebase
-    .firestore()
-    .collection("comments")
+  db.collection("comments")
     .add({
       postId,
       content: content.replace(/[\r\n]/g, "n_n_"),

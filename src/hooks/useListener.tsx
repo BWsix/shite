@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import firebase from "firebase/app";
+import { db } from "../App";
 
 import { PostProps } from "../pages/posts/Post";
 
@@ -18,8 +18,7 @@ export const useListener = (
   const [lastActionId, setLastActionId] = useState("");
 
   useEffect(() => {
-    return firebase
-      .firestore()
+    return db
       .collection("activities")
       .doc("posts")
       .onSnapshot((doc) => {
@@ -36,9 +35,7 @@ export const useListener = (
     if (action.type === "add") {
       if (posts.find((post) => post.postId === action.postId)) return;
 
-      firebase
-        .firestore()
-        .collection("posts")
+      db.collection("posts")
         .doc(action.postId)
         .get()
         .then((new_doc) => {
@@ -60,9 +57,7 @@ export const useListener = (
     } else if (action.type === "edit") {
       if (!posts.find((post) => post.postId === action.postId)) return;
 
-      firebase
-        .firestore()
-        .collection("posts")
+      db.collection("posts")
         .doc(action.postId)
         .get()
         .then((doc) => {

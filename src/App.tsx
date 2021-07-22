@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import firebase from "firebase/app";
+import "firebase/firestore";
 import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -12,7 +13,7 @@ import { Status } from "./components/hub";
 import "./App.css";
 
 if (!firebase.apps.length) {
-  const app = firebase.initializeApp({
+  firebase.initializeApp({
     apiKey: process.env.REACT_APP_apiKey,
     authDomain: process.env.REACT_APP_authDomain,
     projectId: process.env.REACT_APP_projectId,
@@ -21,6 +22,7 @@ if (!firebase.apps.length) {
     appId: process.env.REACT_APP_appId,
   });
 }
+export const db = firebase.firestore();
 export const auth = firebase.auth();
 
 const App: React.FC = () => {
