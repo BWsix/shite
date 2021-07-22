@@ -19,7 +19,7 @@ export const useGetPrevPosts = (limit?: number) => {
         .collection("posts")
         .orderBy("createdAt", "desc")
         .startAfter(posts.length ? posts[posts.length - 1].createdAt : "")
-        .limit(limit || 4)
+        .limit(limit || 5)
         .get()
         .then((snap) => {
           if (snap.empty) setEnd(true);
@@ -28,12 +28,9 @@ export const useGetPrevPosts = (limit?: number) => {
             ...prev,
             ...snap.docs.map((doc) => {
               return {
+                ...(doc.data() as PostProps),
                 postId: doc.id,
-                author: doc.get("author"),
-                content: doc.get("content"),
-                shiters: doc.get("shiters"),
                 createdAt: doc.get("createdAt").toDate(),
-                comments: doc.get("comments"),
               };
             }),
           ]);

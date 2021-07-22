@@ -21,12 +21,9 @@ export const useGetPost = (postId?: string) => {
             storage_post_update(doc.id);
 
             setPost({
+              ...(doc.data() as PostProps),
               postId: doc.id,
-              author: doc.get("author"),
-              content: doc.get("content"),
-              shiters: doc.get("shiters"),
               createdAt: doc.get("createdAt").toDate(),
-              comments: doc.get("comments"),
             });
           });
         });
