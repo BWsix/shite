@@ -7,7 +7,7 @@ import { PostProps } from "../pages/posts/Post";
 interface ActionProps {
   type: "add" | "edit" | "delete";
   postId: string;
-  time: Date;
+  uuid: string;
 }
 
 export const useListener = (
@@ -15,6 +15,7 @@ export const useListener = (
   setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>
 ) => {
   const [action, setAction] = useState<ActionProps>();
+  const [lastActionId, setLastActionId] = useState("");
 
   useEffect(() => {
     return firebase
@@ -27,10 +28,13 @@ export const useListener = (
   }, []);
 
   useEffect(() => {
-    if (!action || action.time || !posts) return;
+    if (!action || !posts) return;
+
+    if (action.uuid === lastActionId) return;
+    setLastActionId(action.uuid);
 
     if (action.type === "add") {
-      if (posts[0].postId === action.postId) return;
+      if (posts.find((post) => post.postId === action.postId)) return;
 
       firebase
         .firestore()
@@ -50,9 +54,11 @@ export const useListener = (
           });
         });
     } else if (action.type === "delete") {
+      if (!posts.find((post) => post.postId === action.postId)) return;
+
       setPosts(posts.filter((post) => post.postId !== action.postId));
     } else if (action.type === "edit") {
-      if (!posts.map((post) => post.postId).includes(action.postId)) return;
+      if (!posts.find((post) => post.postId === action.postId)) return;
 
       firebase
         .firestore()
@@ -72,5 +78,5 @@ export const useListener = (
           });
         });
     }
-  }, [action, posts]);
+  }, [action, posts, lastActionId]);
 };

@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 import firebase from "firebase/app";
 
 export const deletePost = (postId: string) => {
@@ -17,5 +19,6 @@ export const deletePost = (postId: string) => {
   firebase.firestore().collection("activities").doc("posts").update({
     postId,
     type: "delete",
+    uuid: v4(),
   });
 };

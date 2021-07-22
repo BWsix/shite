@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 import firebase from "firebase/app";
 
 export const updatePost = (content: string, postId: string) => {
@@ -12,7 +14,7 @@ export const updatePost = (content: string, postId: string) => {
       firebase.firestore().collection("activities").doc("posts").update({
         type: "edit",
         postId: postId,
-        time: firebase.firestore.FieldValue.serverTimestamp(),
+        uuid: v4(),
       });
     });
 };
