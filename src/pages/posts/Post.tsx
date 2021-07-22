@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { Content, Stats } from "./hub";
-import { PostEditor } from "./PostEditor";
+import { Content, Stats, Options, PostEditor } from "./hub";
 import { Comments } from "./comments/Comments";
 import { UserIcon } from "../../components/UserIcon";
 import { deletePost } from "../../functions/deletePost";
@@ -37,44 +36,15 @@ export const Post: React.FC<Props> = ({ post, uid, name }) => {
       <div className="Post">
         <div className="Post-content-upper">
           <UserIcon type="large" uid={post.author} withName={true} />
-          {uid === post.author &&
-            (toggleEdit ? (
-              <div style={{ display: "flex" }}>
-                <button
-                  className="btn-thin btn-round"
-                  onClick={() => setToggleEdit(false)}
-                >
-                  cancel
-                </button>
-                <button
-                  className="btn-thin btn-round btn-left"
-                  onClick={() => {
-                    if (!editedContent.trim().length) return;
-                    editPost(post, editedContent.trim());
-                    setToggleEdit(false);
-                  }}
-                >
-                  save
-                </button>
-              </div>
-            ) : (
-              <div style={{ display: "flex" }}>
-                <button
-                  className="btn-thin btn-round"
-                  onClick={() => {
-                    setToggleEdit(true);
-                  }}
-                >
-                  edit
-                </button>
-                <button
-                  className="btn-thin btn-round btn-left"
-                  onClick={() => deletePost(post.postId)}
-                >
-                  delete
-                </button>
-              </div>
-            ))}
+
+          {uid === post.author && (
+            <Options
+              toggleEdit={toggleEdit}
+              setToggleEdit={setToggleEdit}
+              post={post}
+              editedContent={editedContent}
+            />
+          )}
         </div>
 
         {toggleEdit ? (
