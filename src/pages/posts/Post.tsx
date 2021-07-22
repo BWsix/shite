@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { Content, Stats, Options, PostEditor } from "./hub";
 import { Comments } from "./comments/Comments";
 import { UserIcon } from "../../components/UserIcon";
-import { deletePost } from "../../functions/deletePost";
-import { editPost } from "../../functions/editPost";
 
 import "./Post.css";
 import "../../styles/button.css";
@@ -60,7 +58,13 @@ export const Post: React.FC<Props> = ({ post, uid, name }) => {
       <div className="Post-strike" />
 
       <Stats post={post} uid={uid} setToggleComments={setToggleComments} />
-      {toggleComments && <Comments post={post} uid={uid} name={name} />}
+
+      {toggleComments && (
+        <>
+          <div className="Post-strike" />
+          <Comments post={post} uid={uid} name={name} />
+        </>
+      )}
     </div>
   );
 };

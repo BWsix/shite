@@ -11,3 +11,12 @@
   padding-left: 10px;
   padding-bottom: 2px;
 }
+
+.Comment-view-prev {
+  cursor: pointer;
+  color: #b0b3b8;
+}
+
+.Comment-view-prev:hover {
+  text-decoration: underline;
+}

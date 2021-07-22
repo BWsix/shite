@@ -5,13 +5,15 @@ import firebase from "firebase/app";
 import { CommentProps } from "../pages/posts/comments/Comment";
 
 export const useComments = (postId: string, limit?: number) => {
-  const [commentIds, setCommentIds] = useState<string[]>([]);
-  const [fetched, setFetched] = useState<string[]>([]);
   const [comments, setComments] = useState<CommentProps[]>([]);
-  const [error, setError] = useState(false);
+  const [commentIds, setCommentIds] = useState<string[]>([]);
 
-  // const [toggle, setToggle] = useState(() => true);
-  // const [end, setEnd] = useState(false);
+  const [fetchedIds, setFetchedIds] = useState<string[]>([]);
+  const [initialIds, setInitialIds] = useState<string[]>([]);
+
+  const [toggle, setToggle] = useState(false);
+  const [end, setEnd] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     return firebase
@@ -19,44 +21,90 @@ export const useComments = (postId: string, limit?: number) => {
       .collection("posts")
       .doc(postId)
       .onSnapshot((doc) => {
-        setCommentIds(doc.get("comments"));
+        setCommentIds((prev) => {
+          return doc.get("comments");
+        });
       });
   }, []);
 
-  useEffect(() => {
-    const get_comment = (id: string) => {
-      setFetched((prev) => [...prev, id]);
+  const prepend_comment = (id: string) => {
+    setFetchedIds((prev) => [...prev, id]);
 
-      firebase
-        .firestore()
-        .collection("comments")
-        .doc(id)
-        .get()
-        .then((doc) => {
-          setComments((prev) => [
-            {
-              commentId: doc.id,
-              author: doc.get("author"),
-              content: doc.get("content"),
-              createdAt: doc.get("createdAt").toDate(),
-              postId: doc.get("postId"),
-              shiters: doc.get("shiters"),
-            },
-            ...prev,
-          ]);
-        })
-        .catch((err) => {
-          setError(true);
-        });
-    };
-
-    if (commentIds) {
-      commentIds.forEach((id) => {
-        if (fetched.includes(id)) return;
-        get_comment(id);
+    firebase
+      .firestore()
+      .collection("comments")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        setComments((prev) => [
+          {
+            ...(doc.data() as CommentProps),
+            commentId: doc.id,
+            createdAt: doc.get("createdAt").toDate(),
+          },
+          ...prev,
+        ]);
+      })
+      .catch((err) => {
+        setError(true);
       });
+  };
+
+  const append_comment = (id: string) => {
+    setFetchedIds((prev) => [id, ...prev]);
+
+    firebase
+      .firestore()
+      .collection("comments")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        window.scrollBy(0, doc.get("content").split("n_n_").length * 21 + 33);
+
+        setComments((prev) => [
+          ...prev,
+          {
+            ...(doc.data() as CommentProps),
+            commentId: doc.id,
+            createdAt: doc.get("createdAt").toDate(),
+          },
+        ]);
+      })
+      .catch((err) => {
+        setError(true);
+      });
+  };
+
+  useEffect(() => {
+    if (!commentIds.length) return;
+
+    if (!initialIds.length) {
+      setInitialIds(commentIds);
+      setEnd(false);
+      setToggle(true);
+    } else {
+      commentIds
+        .filter((id) => !initialIds.includes(id))
+        .filter((id) => !fetchedIds.includes(id))
+        .forEach((id) => {
+          append_comment(id);
+        });
     }
   }, [commentIds]);
 
-  return { comments, error };
+  useEffect(() => {
+    if (!toggle) return;
+    setToggle(false);
+
+    let toRender = initialIds
+      .filter((id) => !fetchedIds.includes(id))
+      .slice(-4)
+      .reverse();
+
+    toRender.forEach((id) => prepend_comment(id));
+
+    if (toRender.length < 4) setEnd(true);
+  }, [toggle]);
+
+  return { comments, setToggle, end, error };
 };

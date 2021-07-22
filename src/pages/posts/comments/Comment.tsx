@@ -24,7 +24,7 @@ export const Comment: React.FC<Props> = ({ cmt }) => {
       <UserIcon type="small" uid={cmt.author} />
 
       <div className="Comment-text">
-        <b>{name} </b>
+        <b style={{ color: "lightgrey" }}>{name} </b>
         <span style={{ color: "gray" }}>
           {cmt.createdAt.toLocaleDateString()}{" "}
           {cmt.createdAt.toLocaleTimeString()}
