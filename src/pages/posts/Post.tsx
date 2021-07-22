@@ -41,6 +41,7 @@ export const Post: React.FC<Props> = ({ post, uid, name }) => {
               setToggleEdit={setToggleEdit}
               post={post}
               editedContent={editedContent}
+              uid={uid}
             />
           )}
         </div>

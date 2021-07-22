@@ -1,22 +1,26 @@
 import { v4 } from "uuid";
 
 import firebase from "firebase/app";
+import { db } from "../App";
 
-export const deletePost = (postId: string) => {
-  firebase
-    .firestore()
-    .collection("posts")
+export const deletePost = (postId: string, uid: string) => {
+  db.collection("posts")
     .doc(postId)
     .get()
     .then((doc) => {
       doc.get("comments").forEach((elem: string | undefined) => {
-        firebase.firestore().collection("comments").doc(elem).delete();
+        db.collection("comments").doc(elem).delete();
       });
 
-      firebase.firestore().collection("posts").doc(postId).delete();
+      db.collection("posts").doc(postId).delete();
+      db.collection("users")
+        .doc(uid)
+        .update({
+          posts: firebase.firestore.FieldValue.arrayRemove(postId),
+        });
     });
 
-  firebase.firestore().collection("activities").doc("posts").update({
+  db.collection("activities").doc("posts").update({
     postId,
     type: "delete",
     uuid: v4(),

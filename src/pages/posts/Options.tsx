@@ -9,6 +9,7 @@ interface OptionsProps {
   setToggleEdit: React.Dispatch<React.SetStateAction<boolean>>;
   post: PostProps;
   editedContent: string;
+  uid: string;
 }
 
 export const Options: React.FC<OptionsProps> = ({
@@ -16,6 +17,7 @@ export const Options: React.FC<OptionsProps> = ({
   setToggleEdit,
   post,
   editedContent,
+  uid,
 }) => {
   return (
     <div style={{ display: "flex" }}>
@@ -53,7 +55,7 @@ export const Options: React.FC<OptionsProps> = ({
             onClick={() => {
               // eslint-disable-next-line no-restricted-globals
               if (confirm("delete this post?")) {
-                deletePost(post.postId);
+                deletePost(post.postId, uid);
               }
             }}
           >
