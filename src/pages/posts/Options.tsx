@@ -50,7 +50,12 @@ export const Options: React.FC<OptionsProps> = ({
           </button>
           <button
             className="btn-thin btn-round btn-left"
-            onClick={() => deletePost(post.postId)}
+            onClick={() => {
+              // eslint-disable-next-line no-restricted-globals
+              if (confirm("delete this post?")) {
+                deletePost(post.postId);
+              }
+            }}
           >
             delete
           </button>
