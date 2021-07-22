@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
+
 import firebase from "firebase/app";
-import { useEffect } from "react";
 
 import { PostProps } from "../pages/posts/Post";
 
@@ -8,6 +9,8 @@ export const useListener = (
   setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>
 ) => {
   useEffect(() => {
+    if (!posts.length) return;
+
     return firebase
       .firestore()
       .collection("activities")
@@ -17,39 +20,27 @@ export const useListener = (
           let postId = doc.get("postId");
 
           if (actionType === "add") {
+            if (posts[0].postId === postId) return;
+
             firebase
               .firestore()
               .collection("posts")
               .doc(postId)
               .get()
               .then((new_doc) => {
-                setPosts((prev) => {
-                  if (!prev.length) return prev;
-                  if (prev[0].postId === new_doc.id) return prev;
-
-                  return [
-                    {
-                      postId: new_doc.id,
-                      author: new_doc.get("author"),
-                      content: new_doc.get("content"),
-                      shiters: new_doc.get("shiters"),
-                      createdAt: new_doc.get("createdAt").toDate(),
-                      comments: new_doc.get("comments"),
-                    },
-                    ...prev,
-                  ];
-                });
+                setPosts((prev) => [
+                  {
+                    ...(new_doc.data() as PostProps),
+                    postId: new_doc.id,
+                    createdAt: new_doc.get("createdAt").toDate(),
+                  },
+                  ...prev,
+                ]);
               });
           } else if (actionType === "delete") {
-            setPosts((prev) => {
-              if (!prev.length) return prev;
-              if (!prev.map((post) => post.postId).includes(postId))
-                return prev;
-
-              return prev.filter((post) => post.postId !== postId);
-            });
+            setPosts((prev) => prev.filter((post) => post.postId !== postId));
           }
         });
       });
-  }, []);
+  }, [posts]);
 };
