@@ -1,7 +1,8 @@
 import React from "react";
-import { v4 } from "uuid";
-import { UserIcon } from "../../../components/UserIcon";
 import { useUserInfo } from "../../../hooks/useUserInfo";
+
+import { UserIcon } from "../../../components/UserIcon";
+import { ParseContent } from "../../../components/ParseContent";
 
 export interface CommentProps {
   commentId: string;
@@ -29,22 +30,7 @@ export const Comment: React.FC<Props> = ({ cmt }) => {
           {cmt.createdAt.toLocaleDateString()}{" "}
           {cmt.createdAt.toLocaleTimeString()}
         </span>
-        {cmt.content.split("n_n_").map((line) => (
-          <div key={v4()} style={{ display: "flex", flexWrap: "wrap" }}>
-            {line.split(" ").map((word) => (
-              <span
-                key={v4()}
-                style={{
-                  maxWidth: "555px",
-                  wordWrap: "break-word",
-                }}
-              >
-                {word + String.fromCharCode(160)}
-              </span>
-            ))}
-            <br />
-          </div>
-        ))}
+        <ParseContent content={cmt.content} />
       </div>
     </div>
   );
