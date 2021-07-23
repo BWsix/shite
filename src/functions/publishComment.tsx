@@ -9,7 +9,7 @@ export const publishComment = (
   db.collection("comments")
     .add({
       postId,
-      content: content.replace(/[\r\n]/g, "n_n_"),
+      content: content.trim().replace(/[\r\n]/g, "n_n_"),
       author: uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       shiters: [],

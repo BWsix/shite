@@ -36,10 +36,7 @@ export const Comment: React.FC<Props> = ({ cmt }) => {
                 key={v4()}
                 style={{
                   maxWidth: "555px",
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
+                  wordWrap: "break-word",
                 }}
               >
                 {word + String.fromCharCode(160)}
