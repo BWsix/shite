@@ -102,9 +102,11 @@ export const useComments = (postId: string, limit?: number) => {
       .reverse();
 
     toRender.forEach((id) => prepend_comment(id));
-
-    if (toRender.length < 4) setEnd(true);
   }, [toggle]);
+
+  useEffect(() => {
+    if (commentIds.length === fetchedIds.length) setEnd(true);
+  }, [commentIds, fetchedIds]);
 
   return { comments, setToggle, end, error };
 };
