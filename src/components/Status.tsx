@@ -1,10 +1,18 @@
 import React from "react";
 
 interface statusProps {
-  content: string;
+  content: "loading" | "error" | string;
 }
 
 export const Status: React.FC<statusProps> = ({ content }) => {
+  let script = "";
+
+  if (content === "loading") {
+    script = "Loading...";
+  } else if (content === "error") {
+    script = "Error.";
+  }
+
   return (
     <div
       style={{
@@ -14,7 +22,9 @@ export const Status: React.FC<statusProps> = ({ content }) => {
         height: "60px",
       }}
     >
-      <span style={{ textAlign: "center" }}>💩 {content} 💩</span>
+      <span style={{ textAlign: "center" }}>
+        💩 {script.length ? script : content} 💩
+      </span>
     </div>
   );
 };
