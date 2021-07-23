@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 import firebase from "firebase/app";
-import { db } from "../App";
+import { db } from "../../../App";
 
 export const updatePost = (content: string, postId: string) => {
   db.collection("posts")

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { InputField } from "../../components/hub";
+import { InputField } from "../../../components/hub";
 
 interface PostEditorProps {
   editedContent: string;

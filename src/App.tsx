@@ -6,10 +6,9 @@ import "firebase/firestore";
 import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { Navbar, Main, Login } from "./routes/hub";
+import { Navbar, Main, Login, OnePost } from "./routes/hub";
 import { updateUser } from "./functions/updateUser";
 import { Status } from "./components/hub";
-import { OnePost } from "./routes/onePost/OnePost";
 
 import "./App.css";
 

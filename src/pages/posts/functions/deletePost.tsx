@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 import firebase from "firebase/app";
-import { db } from "../App";
+import { db } from "../../../App";
 
 export const deletePost = (postId: string, uid: string) => {
   db.collection("posts")

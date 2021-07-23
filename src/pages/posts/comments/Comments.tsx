@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 
 import { Comment } from "./Comment";
 import { AddComment } from "./AddComment";
-import { PostContext } from "../PostContent";
+import { useComments } from "../hooks/hub";
+import { PostContext } from "../PostContext";
 import { Status } from "../../../components/hub";
-import { useComments } from "../../../hooks/useComments";
 
 import "./Comments.css";
 import "../Post.css";

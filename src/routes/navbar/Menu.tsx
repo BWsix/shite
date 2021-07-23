@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 
 import { signOut } from "../login/auth";
-import { clear_cache } from "../../functions/_local";
-import { updateUser } from "../../functions/updateUser";
+import { clear_cache, updateUser } from "../../functions/hub";
 
 import "./Navbar.css";
 

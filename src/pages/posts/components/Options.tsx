@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 
-import { PostContext } from "./PostContent";
-import { editPost } from "../../functions/editPost";
-import { UserContext } from "../../App";
-import { deletePost } from "../../functions/deletePost";
+import { PostContext } from "../PostContext";
+import { deletePost, updatePost } from "../functions/hub";
+import { UserContext } from "../../../App";
 
 interface OptionsProps {
   toggleEdit: boolean;
@@ -33,7 +32,7 @@ export const Options: React.FC<OptionsProps> = ({
             className="btn-thin btn-round btn-left"
             onClick={() => {
               if (!editedContent.trim().length) return;
-              editPost(post, editedContent.trim());
+              updatePost(editedContent.trim(), post.postId);
               setToggleEdit(false);
             }}
           >

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { PostContext } from "../PostContent";
+import { PostContext } from "../PostContext";
 import { TimePosted, ShiteButton, ToggleComments } from "./hub";
 
 import "./Stats.css";

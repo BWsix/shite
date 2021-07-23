@@ -1,5 +1,5 @@
 import React from "react";
-import { PostProps } from "./Post";
+import { PostProps } from "./types";
 
 interface usePost {
   post: PostProps;

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 
 import { Menu } from "./Menu";
+import { useScroll } from "./useScroll";
 import { UserIcon } from "../../components/hub";
-import { useScroll } from "../../hooks/useScroll";
 
 import "./Navbar.css";
 import "../../styles/button.css";

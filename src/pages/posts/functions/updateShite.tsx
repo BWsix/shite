@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import { db } from "../App";
+import { db } from "../../../App";
 
 export const updateShite = (
   uid: string,

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import firebase from "firebase/app";
 
-import { PostProps } from "../pages/posts/Post";
+import { PostProps } from "../types";
 
 export const useGetPrevPosts = (limit?: number) => {
   const [posts, setPosts] = useState<PostProps[]>([]);

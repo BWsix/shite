@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { db } from "../App";
+import { db } from "../../../App";
 
-import { PostProps } from "../pages/posts/Post";
+import { PostProps } from "../types";
 
 interface ActionProps {
   type: "add" | "edit" | "delete";

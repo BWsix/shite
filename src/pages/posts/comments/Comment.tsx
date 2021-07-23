@@ -1,17 +1,8 @@
 import React from "react";
+
+import { CommentProps } from "../types";
 import { useUserInfo } from "../../../hooks/useUserInfo";
-
-import { UserIcon } from "../../../components/UserIcon";
-import { ParseContent } from "../../../components/ParseContent";
-
-export interface CommentProps {
-  commentId: string;
-  author: string;
-  content: string;
-  createdAt: Date;
-  postId: string;
-  shiters: string[];
-}
+import { UserIcon, ParseContent } from "../../../components/hub";
 
 interface Props {
   cmt: CommentProps;

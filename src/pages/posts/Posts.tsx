@@ -2,9 +2,8 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Post } from "./Post";
-import { Status } from "../../components/Status";
-import { useGetPrevPosts } from "../../hooks/usePosts";
-import { useListener } from "../../hooks/useListener";
+import { Status } from "../../components/hub";
+import { useGetPrevPosts, useListener } from "./hooks/hub";
 
 import "../../styles/button.css";
 

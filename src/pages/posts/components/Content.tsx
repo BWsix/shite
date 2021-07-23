@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
-import { PostContext } from "./PostContent";
+import { PostContext } from "../PostContext";
+import { ParseContent } from "../../../components/hub";
 
-import "./Post.css";
-import { ParseContent } from "../../components/ParseContent";
+import "../Post.css";
 
 export const Content: React.FC = () => {
   const { post } = useContext(PostContext);

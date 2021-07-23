@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../../App";
 
 import { UserIcon, InputField } from "../../components/hub";
-import { publishPost } from "../../functions/publishPost";
+import { publishPost } from "./publishPost";
 
 import "../../styles/button.css";
 import "../../pages/posts/Post.css";

@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 
 import firebase from "firebase/app";
 
-import { PostProps } from "../pages/posts/Post";
-import { CommentProps } from "../pages/posts/comments/Comment";
+import { CommentProps, PostProps } from "../types";
 
 export const useComments = (
   postId: string,

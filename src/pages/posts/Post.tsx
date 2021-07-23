@@ -1,24 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
-import { PostContext } from "./PostContent";
+import { PostContext } from "./PostContext";
 import { UserContext } from "../../App";
 
+import { PostProps } from "./types";
 import { Content, Stats, Options, PostEditor } from "./hub";
 import { Comments } from "./comments/Comments";
-import { UserIcon } from "../../components/UserIcon";
+import { UserIcon } from "../../components/hub";
 
 import "./Post.css";
 import "../../styles/button.css";
-import { useEffect } from "react";
-
-export interface PostProps {
-  postId: string;
-  author: string;
-  content: string;
-  shiters: string[];
-  createdAt: Date;
-  comments: string[];
-}
 
 interface Props {
   _post: PostProps;

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../../App";
 
-import { PostContext } from "../PostContent";
-import { updateShite } from "../../../functions/updateShite";
+import { PostContext } from "../PostContext";
+import { updateShite } from "../functions/updateShite";
 
 import "./Stats.css";
 

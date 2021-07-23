@@ -1,8 +1,8 @@
 import React, { useState, useRef, useContext } from "react";
 import { UserContext } from "../../../App";
 
+import { publishComment } from "../functions/hub";
 import { InputField, UserIcon } from "../../../components/hub";
-import { publishComment } from "../../../functions/publishComment";
 
 import "./Comments.css";
 

@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/62497110/detect-scroll-direction-in-react-js#62497293
+
 import { useState, useEffect } from "react";
 
 export const useScroll = () => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { db } from "../App";
 
-import { PostProps } from "../pages/posts/Post";
+import { PostProps } from "../pages/posts/types";
 
 export const useGetPost = (postId?: string) => {
   const [post, setPost] = useState<PostProps>();

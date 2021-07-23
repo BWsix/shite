@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Status } from "../../components/Status";
 import { useGetPost } from "../../hooks/useGetPost";
-import { Post, PostProps } from "../../pages/posts/Post";
+import { Post } from "../../pages/posts/Post";
 
 interface OnePostProps {
   postId: string;
