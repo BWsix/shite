@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
-import firebase from "firebase/app";
+import { UserContext } from "../../App";
 
 import { Menu } from "./Menu";
 import { UserIcon } from "../../components/hub";
@@ -10,11 +9,9 @@ import { useScroll } from "../../hooks/useScroll";
 import "./Navbar.css";
 import "../../styles/button.css";
 
-interface NavbarProps {
-  user: firebase.User;
-}
+export const Navbar: React.FC = () => {
+  const user = useContext(UserContext);
 
-export const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const [toggle, setToggle] = useState(false);
   const scrollDown = useScroll();
 
@@ -23,7 +20,6 @@ export const Navbar: React.FC<NavbarProps> = ({ user }) => {
       <div className="Nav-inner">
         <Link to="/">
           <h1 className="Nav-h1">Shite.</h1>
-          {scrollDown}
         </Link>
 
         <div
@@ -32,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user }) => {
           onMouseLeave={() => setToggle(false)}
         >
           <UserIcon type="large" uid={user.uid} hover={true} />
-          <Menu user={user} toggle={toggle} />
+          <Menu toggle={toggle} />
         </div>
       </div>
     </div>

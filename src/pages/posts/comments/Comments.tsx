@@ -1,24 +1,18 @@
-import React from "react";
-
-import { useComments } from "../../../hooks/useComments";
+import React, { useContext } from "react";
 
 import { Comment } from "./Comment";
 import { AddComment } from "./AddComment";
-import { PostProps } from "../Post";
+import { PostContext } from "../PostContent";
 import { Status } from "../../../components/hub";
+import { useComments } from "../../../hooks/useComments";
 
 import "./Comments.css";
 import "../Post.css";
 import "../../../styles/button.css";
 
-interface CommentsProps {
-  post: PostProps;
-  uid: string;
-  name: string;
-}
-
-export const Comments: React.FC<CommentsProps> = ({ post, uid, name }) => {
-  const { comments, setToggle, end, error } = useComments(post.postId);
+export const Comments: React.FC = () => {
+  const { post, setPost } = useContext(PostContext);
+  const { comments, setToggle, end, error } = useComments(post.postId, setPost);
 
   if (error) return <Status content="error" />;
 
@@ -40,7 +34,7 @@ export const Comments: React.FC<CommentsProps> = ({ post, uid, name }) => {
         </>
       )}
 
-      <AddComment uid={uid} postId={post.postId} name={name} />
+      <AddComment postId={post.postId} />
     </div>
   );
 };

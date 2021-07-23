@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { UserContext } from "../../../App";
 
 import { InputField, UserIcon } from "../../../components/hub";
 import { publishComment } from "../../../functions/publishComment";
@@ -6,22 +7,18 @@ import { publishComment } from "../../../functions/publishComment";
 import "./Comments.css";
 
 interface AddCommentProps {
-  uid: string;
   postId: string;
-  name: string;
 }
 
-export const AddComment: React.FC<AddCommentProps> = ({
-  uid,
-  postId,
-  name,
-}) => {
+export const AddComment: React.FC<AddCommentProps> = ({ postId }) => {
+  const user = useContext(UserContext);
+
   const [content, setContent] = useState("");
   const publishButton = useRef<HTMLButtonElement | null>(null);
 
   return (
     <div className="AddComment Comment">
-      <UserIcon type="small" uid={uid} />
+      <UserIcon type="small" uid={user.uid} />
 
       <div
         style={{
@@ -29,7 +26,7 @@ export const AddComment: React.FC<AddCommentProps> = ({
           paddingLeft: "10px",
         }}
       >
-        <b>{name}</b>
+        <b>{user.displayName}</b>
         <div style={{ width: "100%" }}>
           <InputField
             content={content}
@@ -53,7 +50,7 @@ export const AddComment: React.FC<AddCommentProps> = ({
               if (!content.trim().length) {
                 return setContent("");
               }
-              publishComment(content!, uid, postId);
+              publishComment(content!, user.uid, postId);
               setContent("");
             }}
           >

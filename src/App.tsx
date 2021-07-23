@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Navbar, Main, Login } from "./routes/hub";
 import { updateUser } from "./functions/updateUser";
 import { Status } from "./components/hub";
+import { OnePost } from "./routes/onePost/OnePost";
 
 import "./App.css";
 
@@ -25,6 +26,10 @@ if (!firebase.apps.length) {
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 
+export const UserContext = React.createContext<firebase.User>(
+  {} as firebase.User
+);
+
 const App: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
 
@@ -35,21 +40,16 @@ const App: React.FC = () => {
   else updateUser(user);
 
   return (
-    <Router>
-      <Navbar user={user} />
+    <UserContext.Provider value={user}>
+      <Router>
+        <Navbar />
 
-      <div className="Container-outer">
-        <div className="Container">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Main uid={user.uid} name={user.displayName || ""} />
-              )}
-            />
+        <div className="Container-outer">
+          <div className="Container">
+            <Switch>
+              <Route exact path="/" component={Main} />
 
-            {/* <Route
+              {/* <Route
               path="/user/:uid"
               exact
               render={({
@@ -57,23 +57,27 @@ const App: React.FC = () => {
                   params: { uid },
                 },
               }) => <User uid={uid} />}
-            />
+            />*/}
 
-            <Route
-              path="/post/:id"
-              exact
-              render={({
-                match: {
-                  params: { id },
-                },
-              }) => <OnePost id={id} />}
-            /> */}
+              <Route
+                path="/post/:id"
+                exact
+                render={({
+                  match: {
+                    params: { id },
+                  },
+                }) => <OnePost postId={id} />}
+              />
 
-            <Route path="" render={() => <Status content="page not found" />} />
-          </Switch>
+              <Route
+                path=""
+                render={() => <Status content="page not found" />}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </UserContext.Provider>
   );
 };
 

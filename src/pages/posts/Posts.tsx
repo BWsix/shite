@@ -8,16 +8,11 @@ import { useListener } from "../../hooks/useListener";
 
 import "../../styles/button.css";
 
-interface PostsProps {
-  uid: string;
-  name: string;
-}
-
-export const Posts: React.FC<PostsProps> = ({ uid, name }) => {
+export const Posts: React.FC = () => {
   const { posts, setPosts, setToggle, end, error } = useGetPrevPosts();
   useListener(posts, setPosts);
 
-  if (error) return <Status content="Error" />;
+  if (error) return <Status content="error" />;
 
   return (
     <div>
@@ -29,7 +24,7 @@ export const Posts: React.FC<PostsProps> = ({ uid, name }) => {
         endMessage={<Status content="you've reached the end of the internet" />}
       >
         {posts.map((post) => (
-          <Post post={post} uid={uid} name={name} key={post.postId} />
+          <Post _post={post} key={post.postId} />
         ))}
       </InfiniteScroll>
     </div>

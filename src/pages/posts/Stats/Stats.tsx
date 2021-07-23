@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { PostContext } from "../PostContent";
 import { TimePosted, ShiteButton, ToggleComments } from "./hub";
-import { PostProps } from "../Post";
 
 import "./Stats.css";
 
 interface StatsProps {
-  post: PostProps;
-  uid: string;
   setToggleComments: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Stats: React.FC<StatsProps> = ({
-  post,
-  uid,
-  setToggleComments,
-}) => {
+export const Stats: React.FC<StatsProps> = ({ setToggleComments }) => {
+  const { post } = useContext(PostContext);
+
   return (
     <div className="Post-stats">
       <div className="ShiteCount">
-        <ShiteButton shiters={post.shiters} uid={uid} postId={post.postId} />
+        <ShiteButton />
       </div>
       <div>
         <ToggleComments

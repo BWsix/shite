@@ -2,9 +2,14 @@ import { useState, useEffect } from "react";
 
 import firebase from "firebase/app";
 
+import { PostProps } from "../pages/posts/Post";
 import { CommentProps } from "../pages/posts/comments/Comment";
 
-export const useComments = (postId: string, limit?: number) => {
+export const useComments = (
+  postId: string,
+  setPost: React.Dispatch<React.SetStateAction<PostProps>>,
+  limit?: number
+) => {
   const [comments, setComments] = useState<CommentProps[]>([]);
   const [commentIds, setCommentIds] = useState<string[]>([]);
 
@@ -22,6 +27,11 @@ export const useComments = (postId: string, limit?: number) => {
       .doc(postId)
       .onSnapshot((doc) => {
         setCommentIds((prev) => {
+          setPost((post) => ({
+            ...post,
+            comments: doc.get("comments"),
+            shiters: doc.get("shiters"),
+          }));
           return doc.get("comments");
         });
       });

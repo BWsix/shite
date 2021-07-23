@@ -1,24 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { PostProps } from "./Post";
+import { PostContext } from "./PostContent";
 import { editPost } from "../../functions/editPost";
+import { UserContext } from "../../App";
 import { deletePost } from "../../functions/deletePost";
 
 interface OptionsProps {
   toggleEdit: boolean;
   setToggleEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  post: PostProps;
   editedContent: string;
-  uid: string;
 }
 
 export const Options: React.FC<OptionsProps> = ({
   toggleEdit,
   setToggleEdit,
-  post,
   editedContent,
-  uid,
 }) => {
+  const user = useContext(UserContext);
+  const { post } = useContext(PostContext);
+
   return (
     <div style={{ display: "flex" }}>
       {toggleEdit ? (
@@ -55,7 +55,7 @@ export const Options: React.FC<OptionsProps> = ({
             onClick={() => {
               // eslint-disable-next-line no-restricted-globals
               if (confirm("delete this post?")) {
-                deletePost(post.postId, uid);
+                deletePost(post.postId, user.uid);
               }
             }}
           >

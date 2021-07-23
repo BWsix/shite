@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
-import firebase from "firebase/app";
+import { UserContext } from "../../App";
 
 import { signOut } from "../login/auth";
 import { clear_cache } from "../../functions/_local";
@@ -10,11 +9,12 @@ import { updateUser } from "../../functions/updateUser";
 import "./Navbar.css";
 
 interface MenuProps {
-  user: firebase.User;
   toggle: boolean;
 }
 
-export const Menu: React.FC<MenuProps> = ({ user, toggle }) => {
+export const Menu: React.FC<MenuProps> = ({ toggle }) => {
+  const user = useContext(UserContext);
+
   const handle_signOut = () => {
     updateUser(user);
     signOut();

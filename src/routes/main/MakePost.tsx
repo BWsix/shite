@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../App";
 
 import { UserIcon, InputField } from "../../components/hub";
 import { publishPost } from "../../functions/publishPost";
@@ -6,18 +7,16 @@ import { publishPost } from "../../functions/publishPost";
 import "../../styles/button.css";
 import "../../pages/posts/Post.css";
 
-interface MakePostProps {
-  uid: string;
-}
+export const MakePost: React.FC = () => {
+  const user = useContext(UserContext);
 
-export const MakePost: React.FC<MakePostProps> = ({ uid }) => {
   const [content, setContent] = useState("");
 
   const handle_publish = () => {
     if (!content.trim().length) {
       return setContent("");
     }
-    publishPost(content.trim(), uid);
+    publishPost(content.trim(), user.uid);
     setContent("");
   };
 
@@ -32,7 +31,7 @@ export const MakePost: React.FC<MakePostProps> = ({ uid }) => {
       }}
     >
       <div style={{ padding: "10px" }}>
-        <UserIcon type="large" uid={uid} withName={true} />
+        <UserIcon type="large" uid={user.uid} withName={true} />
 
         <div className="Post-content">
           <div style={{ marginBottom: "10px" }}>
