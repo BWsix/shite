@@ -9,6 +9,7 @@ import { UserIcon } from "../../components/UserIcon";
 
 import "./Post.css";
 import "../../styles/button.css";
+import { useEffect } from "react";
 
 export interface PostProps {
   postId: string;
@@ -32,7 +33,11 @@ export const Post: React.FC<Props> = ({ _post }) => {
     _post.content.replaceAll("n_n_", "\n")
   );
 
-  const [post, setPost] = useState(_post);
+  const [post, setPost] = useState(() => _post);
+  useEffect(() => {
+    setPost(_post);
+  }, [_post]);
+
   return (
     <PostContext.Provider value={{ post, setPost }}>
       <div

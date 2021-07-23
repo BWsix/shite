@@ -27,13 +27,14 @@ export const useComments = (
       .doc(postId)
       .onSnapshot((doc) => {
         setCommentIds((prev) => {
-          setPost((post) => ({
-            ...post,
-            comments: doc.get("comments"),
-            shiters: doc.get("shiters"),
-          }));
           return doc.get("comments");
         });
+
+        setPost((post) => ({
+          ...post,
+          comments: doc.get("comments"),
+          shiters: doc.get("shiters"),
+        }));
       });
   }, []);
 

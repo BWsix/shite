@@ -29,6 +29,7 @@ export const useListener = (
   useEffect(() => {
     if (!action || !posts) return;
 
+    if (lastActionId === "") return setLastActionId(action.uuid);
     if (action.uuid === lastActionId) return;
     setLastActionId(action.uuid);
 
