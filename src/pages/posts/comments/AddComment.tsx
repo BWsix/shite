@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { InputField, UserIcon } from "../../../components/hub";
 import { publishComment } from "../../../functions/publishComment";
@@ -17,6 +17,7 @@ export const AddComment: React.FC<AddCommentProps> = ({
   name,
 }) => {
   const [content, setContent] = useState("");
+  const publishButton = useRef<HTMLButtonElement | null>(null);
 
   return (
     <div className="AddComment Comment">
@@ -30,7 +31,11 @@ export const AddComment: React.FC<AddCommentProps> = ({
       >
         <b>{name}</b>
         <div style={{ width: "100%" }}>
-          <InputField content={content} setContent={setContent} />
+          <InputField
+            content={content}
+            setContent={setContent}
+            publishButton={publishButton}
+          />
         </div>
 
         <div
@@ -43,13 +48,16 @@ export const AddComment: React.FC<AddCommentProps> = ({
         >
           <button
             className="btn-thin btn-sharp"
+            ref={publishButton}
             onClick={() => {
-              if (!content.length) return;
-              publishComment(content, uid, postId);
+              if (!content.trim().length) {
+                return setContent("");
+              }
+              publishComment(content!, uid, postId);
               setContent("");
             }}
           >
-            publish
+            comment
           </button>
         </div>
       </div>
