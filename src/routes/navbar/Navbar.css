@@ -11,6 +11,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  transition: top 0.3s ease-in-out;
+}
+
+.Nav-hide {
+  top: -71.5px;
 }
 
 .Nav-inner {
