@@ -30,8 +30,14 @@ export const Post: React.FC<Props> = ({ post, uid, name }) => {
   );
 
   return (
-    <div className="Post-outer">
-      <div className="Post">
+    <div
+      style={{
+        backgroundColor: "#242526",
+        width: "100%",
+        margin: "calc(1vh + 15px) 0",
+      }}
+    >
+      <div style={{ padding: "10px" }}>
         <div className="Post-content-upper">
           <UserIcon type="large" uid={post.author} withName={true} />
 

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { UserIcon, InputField } from "../../components/hub";
 import { publishPost } from "../../functions/publishPost";
 
-import "./MakePost.css";
 import "../../styles/button.css";
 import "../../pages/posts/Post.css";
 
@@ -23,8 +22,14 @@ export const MakePost: React.FC<MakePostProps> = ({ uid }) => {
   };
 
   return (
-    <div className="Post-outer">
-      <div className="Post">
+    <div
+      style={{
+        backgroundColor: "#242526",
+        width: "100%",
+        margin: "calc(1vh + 15px) 0",
+      }}
+    >
+      <div style={{ padding: "10px" }}>
         <UserIcon type="large" uid={uid} withName={true} />
 
         <div className="Post-content">
@@ -33,7 +38,7 @@ export const MakePost: React.FC<MakePostProps> = ({ uid }) => {
           </div>
 
           {/*this class disappears when deployed to firebase hosting. wtf???*/}
-          <div className="MakePost-button-set">
+          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
             <button className="btn-thin btn-sharp" onClick={handle_publish}>
               Publish
             </button>
