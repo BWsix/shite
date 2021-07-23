@@ -31,10 +31,12 @@ export const Post: React.FC<Props> = ({ post, uid, name }) => {
 
   return (
     <div
+      // className="Post-outer"
       style={{
         backgroundColor: "#242526",
         width: "100%",
         margin: "calc(1vh + 15px) 0",
+        borderRadius: "10px",
       }}
     >
       <div style={{ padding: "10px" }}>

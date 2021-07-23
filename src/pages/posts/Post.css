@@ -2,6 +2,7 @@
   background-color: #242526;
   width: 100%;
   margin: calc(1vh + 15px) 0;
+  border-radius: 10px;
 }
 
 .Post {
@@ -36,43 +37,8 @@
   justify-content: center;
 }
 
-/* .Post-text-upper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
- 
-.Post-author {
-  height: 69px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-}
-
-.Post-delete {
-  width: 100px;
-  height: 45px;
-  border-radius: 25px;
-}
-
-.Post-content {
-  margin: 8.7px 0;
-  margin-left: calc(69px / 2);
-  word-wrap: break-word;
-}
-*/
-
 .Post-strike {
   background-color: #393a3b;
   height: 2px;
   margin: 2px 10px;
 }
-
-/*
-.Post-img {
-  width: 100%;
-  height: auto;
-} */
