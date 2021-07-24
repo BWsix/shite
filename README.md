@@ -4,20 +4,16 @@ The Next Generation of Social Media is finally here.
 
 ## In Progress
 
-- navbar auto hide
-- **comment section**
-  - `enter` publish
-  - `shift`+`enter` publish
-
-## TODO
-
 - user upload image
   - dnd image uploader
   - image resize & aspect ratio limitation
-- comment edition
-- post page (displays single post)
+
+## TODO
+
+- comment section
+  - comment edition
+  - comment deletion
 - user page
-  - add field _postId list_ to _user_ collection
 - user icon hover info(popup)
 
 ## Next Step
@@ -28,8 +24,34 @@ The Next Generation of Social Media is finally here.
 - chatroom
   - 1v1 chat
   - group chat
+- follower system
 
 ## Dev log
+
+2021/7/24
+
+- added different themes
+  - dark mode(default)
+  - light mode
+- share post button & link
+
+2021/7/23
+
+minor changes/features in the morning
+refactor the entire(almost) project in the rest of the day
+
+- navbar auto hide when scroll down
+- url highlight
+- **comment section**
+  - `enter` comment
+  - `shift`+`enter` new line
+- **post system**
+  - comment/reaction count realtime update
+- **refactor**
+  - store `auth.user` & `post` using `useContent`
+- **restructure**
+  - put everything related to `post` into one folder
+- post page (displays single post)
 
 2021/7/22
 
