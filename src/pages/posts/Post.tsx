@@ -66,6 +66,16 @@ export const Post: React.FC<Props> = ({ _post }) => {
           )}
         </div>
 
+        {post.image && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img
+              src={post.image}
+              alt="just an img"
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
+          </div>
+        )}
+
         <div className="Post-strike" />
 
         <Stats setToggleComments={setToggleComments} />

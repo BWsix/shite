@@ -6,18 +6,21 @@ import { publishPost } from "./publishPost";
 
 import "../../styles/button.css";
 import "../../pages/posts/Post.css";
+import { ImageUploader } from "./ImageUploader";
 
 export const MakePost: React.FC = () => {
   const user = useContext(UserContext);
 
   const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
 
   const handle_publish = () => {
-    if (!content.trim().length) {
+    if (!content.trim().length && !image) {
       return setContent("");
     }
-    publishPost(content.trim(), user.uid);
+    publishPost(user.uid, content.trim(), image);
     setContent("");
+    setImage("");
   };
 
   return (
@@ -38,13 +41,25 @@ export const MakePost: React.FC = () => {
           </div>
 
           {/*this class disappears when deployed to firebase hosting. wtf???*/}
-          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <ImageUploader image_str={image} setImage_str={setImage} />
+
             <button className="btn-thin btn-sharp" onClick={handle_publish}>
               Publish
             </button>
           </div>
         </div>
       </div>
+
+      {image && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src={image}
+            alt="img"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </div>
+      )}
     </div>
   );
 };

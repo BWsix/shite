@@ -1,0 +1,17 @@
+.Upload {
+  color: var(--color-text);
+  background-color: var(--color-btn-off);
+
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color 0.075s ease-out;
+}
+
+.Upload:hover {
+  background-color: var(--color-btn-on);
+}

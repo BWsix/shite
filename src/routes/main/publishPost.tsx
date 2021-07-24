@@ -3,13 +3,17 @@ import { v4 } from "uuid";
 import firebase from "firebase/app";
 import { db } from "../../App";
 
-export const publishPost = (content: string, uid: string) => {
+export const publishPost = (
+  uid: string,
+  content: string = "",
+  image: string = ""
+) => {
   db.collection("posts")
     .add({
       content: content.replace(/[\r\n]/g, "n_n_"),
       author: uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      image: "",
+      image: image,
       shiters: [],
       comments: [],
     })
