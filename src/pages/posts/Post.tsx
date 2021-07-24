@@ -10,6 +10,7 @@ import { UserIcon } from "../../components/hub";
 
 import "./Post.css";
 import "../../styles/button.css";
+import { SharePost } from "./components/SharePost";
 
 interface Props {
   _post: PostProps;
@@ -43,13 +44,16 @@ export const Post: React.FC<Props> = ({ _post }) => {
           <div className="Post-content-upper">
             <UserIcon type="large" uid={post.author} withName={true} />
 
-            {user.uid === post.author && (
-              <Options
-                toggleEdit={toggleEdit}
-                setToggleEdit={setToggleEdit}
-                editedContent={editedContent}
-              />
-            )}
+            <div style={{ display: "flex" }}>
+              {user.uid === post.author && (
+                <Options
+                  toggleEdit={toggleEdit}
+                  setToggleEdit={setToggleEdit}
+                  editedContent={editedContent}
+                />
+              )}
+              <SharePost postId={post.postId} />
+            </div>
           </div>
 
           {toggleEdit ? (

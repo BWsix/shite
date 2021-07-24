@@ -21,12 +21,14 @@ a {
 
 button,
 input[type="file"] {
-  display: block;
+  color: var(--color-text);
   background-color: var(--color-btn-off);
+
+  display: block;
   border: none;
   outline: none;
-  color: var(--color-text);
   cursor: pointer;
+  user-select: none;
 
   transition: background-color 0.075s ease-out;
 }

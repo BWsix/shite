@@ -18,50 +18,49 @@ export const Options: React.FC<OptionsProps> = ({
   const user = useContext(UserContext);
   const { post } = useContext(PostContext);
 
-  return (
-    <div style={{ display: "flex" }}>
-      {toggleEdit ? (
-        <>
-          <button
-            className="btn-thin btn-round"
-            onClick={() => setToggleEdit(false)}
-          >
-            cancel
-          </button>
-          <button
-            className="btn-thin btn-round btn-left"
-            onClick={() => {
-              if (!editedContent.trim().length) return;
-              updatePost(editedContent.trim(), post.postId);
-              setToggleEdit(false);
-            }}
-          >
-            save
-          </button>
-        </>
-      ) : (
-        <>
-          <button
-            className="btn-thin btn-round"
-            onClick={() => {
-              setToggleEdit(true);
-            }}
-          >
-            edit
-          </button>
-          <button
-            className="btn-thin btn-round btn-left"
-            onClick={() => {
-              // eslint-disable-next-line no-restricted-globals
-              if (confirm("delete this post?")) {
-                deletePost(post.postId, user.uid);
-              }
-            }}
-          >
-            delete
-          </button>
-        </>
-      )}
-    </div>
-  );
+  if (toggleEdit)
+    return (
+      <>
+        <button
+          className="btn-thin btn-round"
+          onClick={() => setToggleEdit(false)}
+        >
+          <small>cancel</small>
+        </button>
+        <button
+          className="btn-thin btn-round btn-left"
+          onClick={() => {
+            if (!editedContent.trim().length) return;
+            updatePost(editedContent.trim(), post.postId);
+            setToggleEdit(false);
+          }}
+        >
+          <small>save</small>
+        </button>
+      </>
+    );
+  else
+    return (
+      <>
+        <button
+          className="btn-thin btn-round"
+          onClick={() => {
+            setToggleEdit(true);
+          }}
+        >
+          <small>edit</small>
+        </button>
+        <button
+          className="btn-thin btn-round btn-left"
+          onClick={() => {
+            // eslint-disable-next-line no-restricted-globals
+            if (confirm("delete this post?")) {
+              deletePost(post.postId, user.uid);
+            }
+          }}
+        >
+          <small>delete</small>
+        </button>
+      </>
+    );
 };
