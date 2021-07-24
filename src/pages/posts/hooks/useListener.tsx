@@ -67,8 +67,9 @@ export const useListener = (
               if (post.postId !== action.postId) return post;
 
               return {
-                ...post,
-                content: doc.get("content"),
+                ...(doc.data() as PostProps),
+                postId: doc.id,
+                createdAt: doc.get("createdAt").toDate(),
               };
             });
           });
