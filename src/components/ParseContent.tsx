@@ -1,28 +1,21 @@
 import React from "react";
 import { v4 } from "uuid";
 
+import "./ParseContent.css";
+
 interface ParseContentProps {
   content: string;
 }
 
 export const ParseContent: React.FC<ParseContentProps> = ({ content }) => {
-  const lineStyles = { display: "flex" }; // flexWrap: "wrap" causes ts(2322) for some reason
-  const linkStyles = { textDecoration: "underline", color: "lightblue" };
-
   return (
     <>
       {content.split("n_n_").map((line) => (
-        <div key={v4()} style={{ ...lineStyles, flexWrap: "wrap" }}>
+        <div key={v4()} className="ParseContent-line">
           {line.split(" ").map((word) => (
-            <span
-              key={v4()}
-              style={{
-                maxWidth: "100%",
-                wordWrap: "break-word",
-              }}
-            >
+            <span key={v4()} className="ParseContent-word">
               {word.startsWith("https://") || word.startsWith("http://") ? (
-                <a href={word} style={linkStyles}>
+                <a href={word} className="ParseContent-url">
                   {word + String.fromCharCode(160)}
                 </a>
               ) : (

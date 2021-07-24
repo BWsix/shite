@@ -14,9 +14,17 @@
 
 .Comment-view-prev {
   cursor: pointer;
-  color: #b0b3b8;
+  color: var(--color-view-prev);
 }
 
 .Comment-view-prev:hover {
   text-decoration: underline;
+}
+
+.Comment-name {
+  color: var(--color-comment-name);
+}
+
+.Comment-time {
+  color: var(--color-comment-date);
 }

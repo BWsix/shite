@@ -9,12 +9,12 @@
   background-color: #00000000;
 }
 .ShiteCount-btn:hover {
-  background-color: #3a3b3c;
+  background-color: var(--color-btn-off);
 }
 
 .ShiteCount-trigger {
-  background-color: #4e4f50;
+  background-color: var(--color-btn-on);
 }
 .ShiteCount-trigger:hover {
-  background-color: #3a3b3c;
+  background-color: var(--color-btn-off);
 }

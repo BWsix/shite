@@ -1,8 +1,8 @@
 .Nav-outer {
   width: 100%;
   min-height: 70px;
-  background: #242526;
-  border-bottom: 1.5px solid #393a3b;
+  background: var(--color-nav-bg);
+  border-bottom: 1.5px solid var(--color-nav-border);
 
   position: sticky;
   top: 0;

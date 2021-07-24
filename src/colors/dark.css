@@ -1,0 +1,21 @@
+:root {
+  --color-bg: #181a1b;
+  --color-text: #e7e9ec;
+  --color-link: #e7e9ec;
+  --color-input: #3a3b3c;
+  --color-url: lightblue;
+
+  --color-nav-bg: #242526;
+  --color-nav-border: #393a3b;
+
+  --color-post-bg: #242526;
+  --color-post-strike: #393a3b;
+
+  --color-view-prev: #b0b3b8;
+  --color-comment-name: lightgrey;
+  --color-comment-date: gray;
+
+  --color-btn-off: #3a3b3c;
+  --color-btn-on: #4e4f50;
+  --color-btn-shadow: #00000033;
+}

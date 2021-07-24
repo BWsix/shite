@@ -1,0 +1,21 @@
+:root {
+  --color-bg: hsl(216, 20%, 95%);
+  --color-text: hsl(0, 0%, 2%);
+  --color-link: hsl(0, 0%, 2%);
+  --color-input: hsl(0, 0%, 95%);
+  --color-url: #216fdb;
+
+  --color-nav-bg: hsl(0, 0%, 100%);
+  --color-nav-border: #dee0e3;
+
+  --color-post-bg: #ffffff;
+  --color-post-strike: #dddfe2;
+
+  --color-view-prev: #65676b;
+  --color-comment-name: #000;
+  --color-comment-date: gray;
+
+  --color-btn-off: hsl(0, 0%, 92%);
+  --color-btn-on: hsl(0, 0%, 88%);
+  --color-btn-shadow: hsla(0, 20%, 100%, 0.5);
+}

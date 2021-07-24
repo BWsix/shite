@@ -1,0 +1,14 @@
+.ParseContent-line {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ParseContent-word {
+  max-width: "100%";
+  word-wrap: break-word;
+}
+
+.ParseContent-url {
+  color: var(--color-url);
+  text-decoration: underline;
+}

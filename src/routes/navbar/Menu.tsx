@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 
 import { signOut } from "../login/auth";
-import { clear_cache, updateUser } from "../../functions/hub";
+import { updateUser, switch_theme } from "../../functions/hub";
 
 import "./Navbar.css";
 
@@ -30,7 +30,14 @@ export const Menu: React.FC<MenuProps> = ({ toggle }) => {
 
       <button
         className="btn-thin btn-sharp btn-top btn-border"
-        onClick={clear_cache}
+        onClick={switch_theme}
+      >
+        {localStorage.getItem("color") === "dark" ? "light" : "dark"} mode
+      </button>
+
+      <button
+        className="btn-thin btn-sharp btn-top btn-border"
+        onClick={() => localStorage.clear()}
       >
         Clear cache
       </button>

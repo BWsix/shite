@@ -1,5 +1,5 @@
 .Post-outer {
-  background-color: #242526;
+  background-color: var(--color-post-bg);
   width: 100%;
   margin: calc(1vh + 15px) 0;
   border-radius: 10px;
@@ -38,7 +38,7 @@
 }
 
 .Post-strike {
-  background-color: #393a3b;
+  background-color: var(--color-post-strike);
   height: 2px;
   margin: 2px 10px;
 }

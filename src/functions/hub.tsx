@@ -1,4 +1,4 @@
 import { updateUser } from "./updateUser";
-import { clear_cache } from "./_local";
+import { switch_theme } from "./switch_theme";
 
-export { updateUser, clear_cache };
+export { updateUser, switch_theme };
