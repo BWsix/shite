@@ -19,15 +19,14 @@ interface Props {
 export const Post: React.FC<Props> = ({ _post }) => {
   const user = useContext(UserContext);
 
+  const [editedContent, setEditedContent] = useState("");
   const [toggleComments, setToggleComments] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
-  const [editedContent, setEditedContent] = useState(
-    _post.content.replaceAll("n_n_", "\n")
-  );
 
   const [post, setPost] = useState(() => _post);
   useEffect(() => {
     setPost(_post);
+    setEditedContent(_post.content);
   }, [_post]);
 
   return (

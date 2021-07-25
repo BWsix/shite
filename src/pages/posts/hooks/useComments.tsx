@@ -9,6 +9,8 @@ export const useComments = (
   setPost: React.Dispatch<React.SetStateAction<PostProps>>,
   limit?: number
 ) => {
+  const [isPostExist, setIsPostExist] = useState(true);
+
   const [comments, setComments] = useState<
     { comment: CommentProps; is_new: boolean }[]
   >([]);
@@ -22,11 +24,15 @@ export const useComments = (
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (!isPostExist) return;
+
     return firebase
       .firestore()
       .collection("posts")
       .doc(postId)
       .onSnapshot((doc) => {
+        if (!doc.exists) return setIsPostExist(false);
+
         setCommentIds((prev) => {
           return doc.get("comments");
         });
@@ -37,7 +43,7 @@ export const useComments = (
           shiters: doc.get("shiters"),
         }));
       });
-  }, []);
+  }, [isPostExist]);
 
   const prepend_comment = (id: string) => {
     setFetchedIds((prev) => [...prev, id]);
