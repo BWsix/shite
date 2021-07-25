@@ -9,7 +9,9 @@ export const useComments = (
   setPost: React.Dispatch<React.SetStateAction<PostProps>>,
   limit?: number
 ) => {
-  const [comments, setComments] = useState<CommentProps[]>([]);
+  const [comments, setComments] = useState<
+    { comment: CommentProps; is_new: boolean }[]
+  >([]);
   const [commentIds, setCommentIds] = useState<string[]>([]);
 
   const [fetchedIds, setFetchedIds] = useState<string[]>([]);
@@ -48,11 +50,14 @@ export const useComments = (
       .then((doc) => {
         setComments((prev) => [
           {
-            ...(doc.data() as CommentProps),
-            commentId: doc.id,
-            createdAt: doc.get("createdAt").toDate(),
+            comment: {
+              ...(doc.data() as CommentProps),
+              commentId: doc.id,
+              createdAt: doc.get("createdAt").toDate(),
+            },
+            is_new: false,
           },
-          ...prev,
+          ...prev.map((tuple) => ({ comment: tuple.comment, is_new: false })),
         ]);
       })
       .catch((err) => {
@@ -69,14 +74,15 @@ export const useComments = (
       .doc(id)
       .get()
       .then((doc) => {
-        window.scrollBy(0, doc.get("content").split("n_n_").length * 21 + 33);
-
         setComments((prev) => [
-          ...prev,
+          ...prev.map((tuple) => ({ comment: tuple.comment, is_new: false })),
           {
-            ...(doc.data() as CommentProps),
-            commentId: doc.id,
-            createdAt: doc.get("createdAt").toDate(),
+            comment: {
+              ...(doc.data() as CommentProps),
+              commentId: doc.id,
+              createdAt: doc.get("createdAt").toDate(),
+            },
+            is_new: true,
           },
         ]);
       })

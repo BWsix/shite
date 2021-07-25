@@ -1,8 +1,14 @@
+.Comment-outer {
+  max-height: min(500px, 50vh);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
 .Comment {
   display: flex;
   flex-direction: row;
 
-  margin: 10px;
+  padding: 5px 10px;
 }
 
 .Comment-text {
@@ -27,4 +33,42 @@
 
 .Comment-time {
   color: var(--color-comment-date);
+}
+
+.Comment-new {
+  background-color: var(--color-comment-new-fade);
+  animation-name: newCommentHightLightFade;
+  animation-duration: 1.2s;
+}
+@keyframes newCommentHightLightFade {
+  0%,
+  50% {
+    background-color: var(--color-comment-new);
+  }
+  100% {
+    background-color: var(--color-comment-new-fade);
+  }
+}
+
+.Comment-scroll-to-bottom-outer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.Comment-scroll-to-bottom {
+  position: absolute;
+  bottom: 10px;
+  animation-name: avoidBlink;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes avoidBlink {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

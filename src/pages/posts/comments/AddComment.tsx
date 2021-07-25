@@ -44,7 +44,7 @@ export const AddComment: React.FC<AddCommentProps> = ({ postId }) => {
           }}
         >
           <button
-            className="btn-thin btn-sharp"
+            style={{ display: "none" }}
             ref={publishButton}
             onClick={() => {
               if (!content.trim().length) {
@@ -53,9 +53,7 @@ export const AddComment: React.FC<AddCommentProps> = ({ postId }) => {
               publishComment(content!, user.uid, postId);
               setContent("");
             }}
-          >
-            comment
-          </button>
+          />
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import "./InputField.css";
 
@@ -21,26 +20,28 @@ export const InputField: React.FC<InputFieldProps> = ({
   const [content_lines, setRows] = useState(() => 1);
 
   return (
-    <textarea
-      value={content}
-      rows={Math.max(content_lines + 1, rows || 3)}
-      placeholder={
-        publishButton ? "Enter: publish\nShift+Enter: new line" : placeholder
-      }
-      onChange={(evt) => {
-        setContent(evt.target.value);
-        setRows(evt.target.value.split("\n").length);
-      }}
-      onKeyDown={(evt) => {
-        if (publishButton)
-          if (evt.key === "Enter" && !evt.shiftKey) evt.preventDefault();
-      }}
-      onKeyUp={(evt) => {
-        if (publishButton)
-          if (evt.key === "Enter" && !evt.shiftKey)
-            publishButton.current!.click();
-      }}
-      className="InputField"
-    />
+    <>
+      <textarea
+        value={content}
+        rows={Math.max(content_lines + 1, rows || 3)}
+        className="InputField"
+        placeholder={
+          publishButton ? "Enter: publish\nShift+Enter: new line" : placeholder
+        }
+        onChange={(evt) => {
+          setContent(evt.target.value);
+          setRows(evt.target.value.split("\n").length);
+        }}
+        onKeyDown={(evt) => {
+          if (publishButton)
+            if (evt.key === "Enter" && !evt.shiftKey) evt.preventDefault();
+        }}
+        onKeyUp={(evt) => {
+          if (publishButton)
+            if (evt.key === "Enter" && !evt.shiftKey)
+              publishButton.current!.click();
+        }}
+      />
+    </>
   );
 };
