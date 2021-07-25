@@ -46,6 +46,8 @@ export const useUser = (
       .doc(uid)
       .get()
       .then((doc) => {
+        if (!doc.exists) return setError(true);
+
         setPostIds((prev) => {
           return doc.get("posts");
         });

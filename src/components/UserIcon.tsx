@@ -20,7 +20,7 @@ export const UserIcon: React.FC<UserIconProps> = ({
   withName,
   hover,
 }) => {
-  const [name, avatar] = useUserInfo(uid);
+  const { name, avatar } = useUserInfo(uid);
 
   const size = (() => {
     if (type === "small") return 35;

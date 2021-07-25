@@ -17,9 +17,10 @@ export const updateUser = (user: firebase.User) => {
       docRef.set({
         name: user.displayName,
         avatar: user.photoURL,
+        bio: "",
+        cover: "",
         following: [user.uid],
         posts: [],
-        // following_posts: [],
       });
     }
   });

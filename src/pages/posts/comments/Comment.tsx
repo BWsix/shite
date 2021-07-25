@@ -18,7 +18,7 @@ export const Comment: React.FC<Props> = ({
   atBottom,
 }) => {
   const commentBlock = useRef<HTMLDivElement | null>(null);
-  const [name] = useUserInfo(cmt.comment.author);
+  const { name } = useUserInfo(cmt.comment.author);
 
   if (cmt.is_new && atBottom) {
     const cmtSection = commentSectionRef.current;
