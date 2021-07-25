@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Comment } from "./Comment";
 import { AddComment } from "./AddComment";
@@ -24,15 +25,11 @@ export const Comments: React.FC = () => {
       <div
         ref={commentSectionRef}
         className="Post Comment-outer"
+        id={"infinite-comment-scroll" + post.postId}
         onScroll={() => {
           const cmtSection = commentSectionRef.current;
-          if (
-            cmtSection &&
-            cmtSection.scrollHeight -
-              cmtSection.scrollTop -
-              cmtSection.clientHeight <
-              60
-          ) {
+
+          if (cmtSection && cmtSection.scrollTop > -60) {
             if (atBottom === false) setAtBottom(true);
           } else {
             if (atBottom === true) setAtBottom(false);
@@ -41,33 +38,43 @@ export const Comments: React.FC = () => {
       >
         {comments && (
           <>
-            {!end && (
+            {/* {!end && (
               <p
                 className="btn-thin btn-sharp Comment-view-prev"
                 onClick={() => setToggle(true)}
               >
                 view previous comments
               </p>
-            )}
-            {comments.map((cmt, index) => {
-              if (index === comments.length - 1) {
+            )} */}
+            <InfiniteScroll
+              dataLength={comments.length}
+              next={() => setToggle(true)}
+              hasMore={!end}
+              inverse={true}
+              scrollableTarget={"infinite-comment-scroll" + post.postId}
+              loader={null}
+            >
+              {comments.map((cmt, index) => {
+                if (index === comments.length - 1) {
+                  return (
+                    <Comment
+                      cmt={cmt}
+                      commentSectionRef={commentSectionRef}
+                      atBottom={atBottom}
+                      key={cmt.comment.commentId}
+                    />
+                  );
+                }
                 return (
                   <Comment
                     cmt={cmt}
                     commentSectionRef={commentSectionRef}
-                    atBottom={atBottom}
                     key={cmt.comment.commentId}
                   />
                 );
-              }
-              return (
-                <Comment
-                  cmt={cmt}
-                  commentSectionRef={commentSectionRef}
-                  key={cmt.comment.commentId}
-                />
-              );
-            })}
+              })}
+            </InfiniteScroll>
+            <div className="Comment">{end ? "" : "loading..."}</div>
           </>
         )}
       </div>

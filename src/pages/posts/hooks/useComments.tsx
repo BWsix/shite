@@ -114,7 +114,7 @@ export const useComments = (
 
     let toRender = initialIds
       .filter((id) => !fetchedIds.includes(id))
-      .slice(-4)
+      .slice(-10)
       .reverse();
 
     toRender.forEach((id) => prepend_comment(id));
