@@ -6,11 +6,11 @@ import { UserContext } from "../../App";
 import { PostProps } from "./types";
 import { Content, Stats, Options, PostEditor } from "./hub";
 import { Comments } from "./comments/Comments";
+import { SharePost } from "./components/SharePost";
 import { UserIcon } from "../../components/hub";
 
 import "./Post.css";
 import "../../styles/button.css";
-import { SharePost } from "./components/SharePost";
 
 interface Props {
   _post: PostProps;

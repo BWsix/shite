@@ -35,9 +35,11 @@ export const Menu: React.FC<MenuProps> = ({ toggle }) => {
       className="Menu-DropDown-Items"
       style={{ display: !toggle ? "none" : "" }}
     >
-      <button className="btn-thin btn-sharp btn-top btn-border">
-        <Link to={`/user/${user.uid}`}>My posts</Link>
-      </button>
+      {window.location.pathname !== `/user/${user.uid}` && (
+        <button className="btn-thin btn-sharp btn-top btn-border">
+          <Link to={`/user/${user.uid}`}>My posts</Link>
+        </button>
+      )}
 
       <button
         className="btn-thin btn-sharp btn-top btn-border"
