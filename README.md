@@ -1,6 +1,6 @@
 # Shite(/tester004_1)
 
-The Next Generation of Social Media is finally here.
+The Next Generation of Social Media created using create-react-app.
 
 ## In Progress
 
