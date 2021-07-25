@@ -2,13 +2,14 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Post } from "./Post";
+import { useListener } from "./hooks/hub";
+import { useGetPrevPostsProps } from "./hooks/usePosts";
 import { Status } from "../../components/hub";
-import { useGetPrevPosts, useListener } from "./hooks/hub";
 
 import "../../styles/button.css";
 
-export const Posts: React.FC = () => {
-  const { posts, setPosts, setToggle, end, error } = useGetPrevPosts();
+export const Posts: React.FC<useGetPrevPostsProps> = ({ POSTS }) => {
+  const { posts, setPosts, setToggle, end, error } = POSTS;
   useListener(posts, setPosts);
 
   if (error) return <Status content="error" />;

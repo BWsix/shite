@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Navbar, Main, Login, OnePost, User } from "./routes/hub";
 import { updateUser } from "./functions/updateUser";
 import { Status } from "./components/hub";
+import { useGetPrevPosts } from "./pages/posts/hooks/usePosts";
 
 import "./App.css";
 
@@ -31,6 +32,7 @@ export const UserContext = React.createContext<firebase.User>(
 
 const App: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
+  const POSTS = useGetPrevPosts();
 
   if (error) return <Status content="Error" />;
   if (loading) return <Status content="Loading" />;
@@ -46,7 +48,11 @@ const App: React.FC = () => {
         <div className="Container-outer">
           <div className="Container">
             <Switch>
-              <Route exact path="/" component={Main} />
+              <Route
+                exact
+                path="/"
+                render={() => <Main POSTS={POSTS as any} />}
+              />
 
               <Route
                 path="/user/:uid"

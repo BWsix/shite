@@ -42,3 +42,13 @@ export const useGetPrevPosts = (limit?: number) => {
   }, [toggle]);
   return { posts, setPosts, setToggle, end, error };
 };
+
+export interface useGetPrevPostsProps {
+  POSTS: {
+    posts: PostProps[];
+    setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>;
+    setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+    end: boolean;
+    error: boolean;
+  };
+}
