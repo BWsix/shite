@@ -40,6 +40,11 @@ export const useUser = (
   };
 
   useEffect(() => {
+    const new_ids = posts
+      .map((post) => post.postId)
+      .filter((id) => !postIds.includes(id));
+    setRequestedIds((prev) => [...new_ids, ...prev]);
+
     firebase
       .firestore()
       .collection("users")
