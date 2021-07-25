@@ -12,6 +12,7 @@ export const useUser = (
 ) => {
   const [postIds, setPostIds] = useState<string[]>([]);
   const [toFetchIds, setToFetchIds] = useState<string[]>([]);
+  const [requestedIds, setRequestedIds] = useState<string[]>([]);
 
   const [toggle, setToggle] = useState(false);
   const [end, setEnd] = useState(true);
@@ -49,9 +50,6 @@ export const useUser = (
           return doc.get("posts");
         });
       });
-
-    if (posts.map((post) => post.postId).length === toFetchIds.length)
-      setEnd(true);
   }, [posts]);
 
   useEffect(() => {
@@ -69,12 +67,18 @@ export const useUser = (
     setToggle(false);
 
     let toRender = toFetchIds
-      .filter((id) => !posts.map((post) => post.postId).includes(id))
+      .filter((id) => !requestedIds.includes(id))
       .slice(-4)
       .reverse();
 
+    setRequestedIds((prev) => [...prev, ...toRender]);
     toRender.forEach((id) => append_post(id));
   }, [toggle]);
+
+  useEffect(() => {
+    if (posts.map((post) => post.postId).length === toFetchIds.length)
+      setEnd(true);
+  }, [posts, toFetchIds]);
 
   return { setToggle, end, error };
 };
