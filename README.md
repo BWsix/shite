@@ -4,9 +4,8 @@ The Next Generation of Social Media is finally here.
 
 ## In Progress
 
-- user upload image
+- **image uploader**
   - dnd image uploader
-  - image resize & aspect ratio limitation
 
 ## TODO
 
@@ -28,16 +27,25 @@ The Next Generation of Social Media is finally here.
 
 ## Dev log
 
+2021/7/25
+
+- **comment section**
+  - upgrade
+    - "scroll to bottom" button
+    - highlight new comments
+
 2021/7/24
 
 - added different themes
   - dark mode(default)
   - light mode
 - share post button & link
+- **image uploader**
+  - image resize & aspect ratio limitation
 
 2021/7/23
 
-minor changes/features in the morning
+minor changes/features in the morning  
 refactor the entire(almost) project in the rest of the day
 
 - navbar auto hide when scroll down
@@ -46,7 +54,7 @@ refactor the entire(almost) project in the rest of the day
   - `enter` comment
   - `shift`+`enter` new line
 - **post system**
-  - comment/reaction count realtime update
+  - comment/reaction count realtime update(after comment section being toggled)
 - **refactor**
   - store `auth.user` & `post` using `useContent`
 - **restructure**
