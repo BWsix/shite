@@ -6,7 +6,7 @@ import "firebase/firestore";
 import "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { Navbar, Main, Login, OnePost } from "./routes/hub";
+import { Navbar, Main, Login, OnePost, User } from "./routes/hub";
 import { updateUser } from "./functions/updateUser";
 import { Status } from "./components/hub";
 
@@ -48,15 +48,15 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path="/" component={Main} />
 
-              {/* <Route
-              path="/user/:uid"
-              exact
-              render={({
-                match: {
-                  params: { uid },
-                },
-              }) => <User uid={uid} />}
-            />*/}
+              <Route
+                path="/user/:uid"
+                exact
+                render={({
+                  match: {
+                    params: { uid },
+                  },
+                }) => <User uid={uid} userId={user.uid} />}
+              />
 
               <Route
                 path="/post/:id"

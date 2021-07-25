@@ -32,6 +32,7 @@ export const UserIcon: React.FC<UserIconProps> = ({
       src={avatar}
       alt={name}
       className={hover ? "UserIcon UserIcon-hover" : "UserIcon"}
+      title={redirect ? "go to " + name + "' page" : undefined}
       style={{ width: size, height: size }}
     />
   );

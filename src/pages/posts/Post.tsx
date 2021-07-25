@@ -14,9 +14,10 @@ import { SharePost } from "./components/SharePost";
 
 interface Props {
   _post: PostProps;
+  redirect?: boolean;
 }
 
-export const Post: React.FC<Props> = ({ _post }) => {
+export const Post: React.FC<Props> = ({ _post, redirect }) => {
   const user = useContext(UserContext);
 
   const [editedContent, setEditedContent] = useState("");
@@ -41,7 +42,13 @@ export const Post: React.FC<Props> = ({ _post }) => {
       >
         <div style={{ padding: "10px" }}>
           <div className="Post-content-upper">
-            <UserIcon type="large" uid={post.author} withName={true} />
+            <UserIcon
+              type="large"
+              uid={post.author}
+              withName={true}
+              redirect={redirect === false ? undefined : true}
+              hover={redirect === false ? undefined : true}
+            />
 
             <div style={{ display: "flex" }}>
               {user.uid === post.author && (
