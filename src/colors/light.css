@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light;
+
   --color-bg: hsl(216, 20%, 95%);
   --color-text: hsl(0, 0%, 2%);
   --color-link: hsl(0, 0%, 2%);

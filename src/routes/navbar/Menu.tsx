@@ -19,6 +19,20 @@ export const Menu: React.FC<MenuProps> = ({ toggle }) => {
     signOut();
   };
 
+  const handle_color = () => {
+    const selectedColor = localStorage.getItem("color");
+    const systemColor = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+
+    console.log(selectedColor);
+    console.log(systemColor);
+
+    if (selectedColor) return selectedColor === "dark" ? "light" : "dark";
+    return systemColor === "dark" ? "light" : "dark";
+  };
+
   return (
     <div
       className="Menu-DropDown-Items"
@@ -30,9 +44,9 @@ export const Menu: React.FC<MenuProps> = ({ toggle }) => {
 
       <button
         className="btn-thin btn-sharp btn-top btn-border"
-        onClick={switch_theme}
+        onClick={() => switch_theme(handle_color())}
       >
-        {localStorage.getItem("color") === "dark" ? "light" : "dark"} mode
+        {handle_color()} mode
       </button>
 
       <button
