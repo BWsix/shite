@@ -26,9 +26,6 @@ export const Menu: React.FC<MenuProps> = ({ toggle }) => {
       ? "dark"
       : "light";
 
-    console.log(selectedColor);
-    console.log(systemColor);
-
     if (selectedColor) return selectedColor === "dark" ? "light" : "dark";
     return systemColor === "dark" ? "light" : "dark";
   };

@@ -38,14 +38,6 @@ export const Comments: React.FC = () => {
       >
         {comments && (
           <>
-            {/* {!end && (
-              <p
-                className="btn-thin btn-sharp Comment-view-prev"
-                onClick={() => setToggle(true)}
-              >
-                view previous comments
-              </p>
-            )} */}
             <InfiniteScroll
               dataLength={comments.length}
               next={() => setToggle(true)}
@@ -74,7 +66,7 @@ export const Comments: React.FC = () => {
                 );
               })}
             </InfiniteScroll>
-            <div className="Comment">{end ? "" : "loading..."}</div>
+            <div className="Comment">{end ? null : "loading..."}</div>
           </>
         )}
       </div>
