@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import Resizer from "react-image-file-resizer";
 
+import { UserContext } from "../../App";
 import { UserIcon, InputField } from "../../components/hub";
 import { publishPost } from "./publishPost";
 
@@ -13,6 +14,22 @@ export const MakePost: React.FC = () => {
 
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+
+  const resizeFile = (file: File) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        650,
+        750,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "base64"
+      );
+    });
 
   const handle_publish = () => {
     if (!content.trim().length && !image) {
@@ -30,6 +47,13 @@ export const MakePost: React.FC = () => {
         width: "100%",
         margin: "calc(1vh + 15px) 0",
         borderRadius: "10px",
+      }}
+      onPaste={async (evt) => {
+        if (!evt.clipboardData.files[0]) return;
+
+        const file = evt.clipboardData.files[0];
+        const image = await resizeFile(file);
+        setImage(image as string);
       }}
     >
       <div style={{ padding: "10px" }}>
