@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Resizer from "react-image-file-resizer";
 
 import "./Main.css";
@@ -7,12 +7,18 @@ import "../../styles/button.css";
 interface ImageUploaderProps {
   image_str: string;
   setImage_str: React.Dispatch<React.SetStateAction<string>>;
+  title?: string;
+  title_cancel?: string;
 }
 
 export const ImageUploader: React.FC<ImageUploaderProps> = ({
   image_str,
   setImage_str,
+  title,
+  title_cancel,
 }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const resizeFile = (file: File) =>
     new Promise((resolve) => {
       Resizer.imageFileResizer(
@@ -38,10 +44,11 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
   return (
     <div style={{ display: "flex" }}>
       <label htmlFor="image_uploader" className="Upload btn-thin btn-sharp">
-        <small>{image_str ? "Choose another" : "Add an Image"}</small>
+        <small>{image_str ? "Choose another" : title || "Add an Image"}</small>
       </label>
       <input
         type="file"
+        ref={inputRef}
         accept="image/x-png, image/jpeg"
         id="image_uploader"
         style={{ display: "none" }}
@@ -53,9 +60,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       {image_str && (
         <button
           className="btn-thin btn-sharp btn-left"
-          onClick={() => setImage_str("")}
+          onClick={() => {
+            setImage_str("");
+            inputRef.current!.value = "";
+          }}
         >
-          <small>Remove</small>
+          <small>{title_cancel || "Remove"}</small>
         </button>
       )}
     </div>

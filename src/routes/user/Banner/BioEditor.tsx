@@ -1,8 +1,7 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
+import { updateBio } from "./updateBanner";
 import { UserContext } from "../../../App";
 import { InputField } from "../../../components/InputField";
-import { updateBio } from "./updateBanner";
 
 interface BioEditorProps {
   editedBio: string;
@@ -42,7 +41,6 @@ export const BioEditor: React.FC<BioEditorProps> = ({
           className="btn-top btn-thin btn-sharp btn-left"
           onClick={() => {
             updateBio(user.uid, editedBio);
-            window.location.reload();
           }}
         >
           Save

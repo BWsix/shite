@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { BioEditor } from "./BioEditor";
-import { ParseContent, Status } from "../../../components/hub";
+import { Status } from "../../../components/hub";
 import { useUserInfo } from "../../../hooks/useUserInfo";
 
 import "./Banner.css";
+import { Bio } from "./Bio";
+import { Cover } from "./Cover";
 
 interface BannerProps {
   uid: string;
@@ -14,19 +15,12 @@ interface BannerProps {
 export const Banner: React.FC<BannerProps> = ({ uid, isOwner }) => {
   const { name, avatar, bio, cover, error } = useUserInfo(uid, true);
 
-  const [editedBio, setEditedBio] = useState(bio);
-  const [toggleEditBio, setToggleEditBio] = useState(false);
-
-  useEffect(() => {
-    setEditedBio(bio.replaceAll("n_n_", "\n"));
-  }, [bio]);
-
   if (error) return <Status content="error" />;
 
   return (
     <div className="Banner">
       <div className="Banner-upper">
-        <img src={cover} alt="user's cover" className="Banner-cover" />
+        <Cover uid={uid} isOwner={isOwner} cover={cover} />
       </div>
 
       <div className="Banner-lower">
@@ -34,31 +28,7 @@ export const Banner: React.FC<BannerProps> = ({ uid, isOwner }) => {
 
         <h1 className="Banner-name">{name}</h1>
 
-        {bio && !toggleEditBio && (
-          <div className="Banner-bio">
-            <div>
-              <ParseContent content={bio} center={true} />
-            </div>
-          </div>
-        )}
-
-        {bio &&
-          isOwner &&
-          (toggleEditBio ? (
-            <BioEditor
-              editedBio={editedBio}
-              setEditedBio={setEditedBio}
-              setToggleEditBio={setToggleEditBio}
-            />
-          ) : (
-            <div
-              className="Banner-bio-edit"
-              onClick={() => setToggleEditBio(true)}
-            >
-              <br />
-              {bio ? "Edit Bio" : "Add Bio"}
-            </div>
-          ))}
+        <Bio bio={bio} isOwner={isOwner} />
       </div>
     </div>
   );

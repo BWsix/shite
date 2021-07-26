@@ -6,5 +6,19 @@ export const updateBio = (uid: string, bio: string) => {
     .doc(uid)
     .update({
       bio: encodeContent(bio),
+    })
+    .then(() => {
+      window.location.reload();
+    });
+};
+
+export const updateCover = (uid: string, image: string) => {
+  db.collection("users")
+    .doc(uid)
+    .update({
+      cover: image,
+    })
+    .then(() => {
+      window.location.reload();
     });
 };

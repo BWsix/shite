@@ -42,7 +42,7 @@ export const useUserInfo = (uid: string, withCover: boolean = false) => {
           if (!snap.exists) return setError(true);
 
           setBio(snap.get("bio"));
-          if (snap.get("cover").length) setCover(snap.get("cover"));
+          setCover(snap.get("cover") || "https://i.imgur.com/PZxq3zy.png");
         });
     }
   }, [uid]);
