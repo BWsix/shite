@@ -33,7 +33,12 @@ export const Comment: React.FC<Props> = ({
       ref={commentBlock}
       className={`Comment ${cmt.is_new ? "Comment-new" : ""}`}
     >
-      <UserIcon type="small" uid={cmt.comment.author} />
+      <UserIcon
+        type="small"
+        uid={cmt.comment.author}
+        redirect={true}
+        hover={true}
+      />
 
       <div className="Comment-text">
         <b className="Comment-name">{name} </b>

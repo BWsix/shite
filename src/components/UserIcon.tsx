@@ -38,7 +38,7 @@ export const UserIcon: React.FC<UserIconProps> = ({
   );
 
   if (redirect) {
-    content = <Link to={`user/${uid}`}>{content}</Link>;
+    content = <Link to={`/user/${uid}`}>{content}</Link>;
   }
 
   if (withName) {
