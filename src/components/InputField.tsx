@@ -8,6 +8,7 @@ interface InputFieldProps {
   rows?: number;
   publishButton?: React.MutableRefObject<HTMLButtonElement | null>;
   placeholder?: string;
+  style?: React.CSSProperties;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -16,6 +17,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   rows,
   publishButton,
   placeholder = "What's on your mind, folk?",
+  style,
 }) => {
   const [content_lines, setRows] = useState(() => 1);
 
@@ -25,6 +27,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         value={content}
         rows={Math.max(content_lines + 1, rows || 3)}
         className="InputField"
+        style={style}
         placeholder={
           publishButton ? "Enter: publish\nShift+Enter: new line" : placeholder
         }

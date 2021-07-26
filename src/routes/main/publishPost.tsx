@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 
 import firebase from "firebase/app";
+import { encodeContent } from "../../functions/hub";
 import { db } from "../../App";
 
 export const publishPost = (
@@ -10,7 +11,7 @@ export const publishPost = (
 ) => {
   db.collection("posts")
     .add({
-      content: content.replace(/[\r\n]/g, "n_n_"),
+      content: encodeContent(content),
       author: uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       image: image,

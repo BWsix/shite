@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import { db } from "../../../App";
+import { encodeContent } from "../../../functions/hub";
 
 export const publishComment = (
   content: string,
@@ -9,7 +10,7 @@ export const publishComment = (
   db.collection("comments")
     .add({
       postId,
-      content: content.trim().replace(/[\r\n]/g, "n_n_"),
+      content: encodeContent(content),
       author: uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       shiters: [],

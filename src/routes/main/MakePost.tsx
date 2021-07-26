@@ -18,7 +18,7 @@ export const MakePost: React.FC = () => {
     if (!content.trim().length && !image) {
       return setContent("");
     }
-    publishPost(user.uid, content.trim(), image);
+    publishPost(user.uid, content, image);
     setContent("");
     setImage("");
   };

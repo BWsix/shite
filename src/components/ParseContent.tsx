@@ -5,13 +5,21 @@ import "./ParseContent.css";
 
 interface ParseContentProps {
   content: string;
+  center?: true;
 }
 
-export const ParseContent: React.FC<ParseContentProps> = ({ content }) => {
+export const ParseContent: React.FC<ParseContentProps> = ({
+  content,
+  center,
+}) => {
   return (
     <>
       {content.split("n_n_").map((line) => (
-        <div key={v4()} className="ParseContent-line">
+        <div
+          key={v4()}
+          className="ParseContent-line"
+          style={center && { display: "flex", justifyContent: "center" }}
+        >
           {line.split(" ").map((word) => (
             <span key={v4()} className="ParseContent-word">
               {word.startsWith("https://") || word.startsWith("http://") ? (
