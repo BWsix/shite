@@ -7,16 +7,7 @@ import {
   storage_userinfo_update,
 } from "../functions/_local_userinfo";
 
-export const useUserInfo = (
-  uid: string,
-  withCover: boolean = false
-): {
-  name: string;
-  avatar: string;
-  bio: string;
-  cover: string;
-  error: boolean;
-} => {
+export const useUserInfo = (uid: string, withCover: boolean = false) => {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("https://i.imgur.com/F1n20rR.png");
   const [bio, setBio] = useState("");
@@ -42,19 +33,19 @@ export const useUserInfo = (
           storage_userinfo_update(uid, snap.get("name"), snap.get("avatar"));
         });
     }
-  }, []);
 
-  if (withCover) {
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then((snap) => {
-        if (!snap.exists) return setError(true);
+    if (withCover) {
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then((snap) => {
+          if (!snap.exists) return setError(true);
 
-        setBio(snap.get("bio"));
-        if (snap.get("cover").length) setCover(snap.get("cover"));
-      });
-  }
+          setBio(snap.get("bio"));
+          if (snap.get("cover").length) setCover(snap.get("cover"));
+        });
+    }
+  }, [uid]);
 
   return { name, avatar, bio, cover, error };
 };

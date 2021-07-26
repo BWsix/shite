@@ -48,11 +48,7 @@ const App: React.FC = () => {
         <div className="Container-outer">
           <div className="Container">
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Main POSTS={POSTS as any} />}
-              />
+              <Route exact path="/" render={() => <Main POSTS={POSTS} />} />
 
               <Route
                 path="/user/:uid"
@@ -61,7 +57,7 @@ const App: React.FC = () => {
                   match: {
                     params: { uid },
                   },
-                }) => <User uid={uid} userId={user.uid} />}
+                }) => <User uid={uid} />}
               />
 
               <Route

@@ -4,12 +4,8 @@ import firebase from "firebase/app";
 
 import { PostProps } from "../../pages/posts/types";
 
-export const useUser = (
-  uid: string,
-  posts: PostProps[],
-  setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>,
-  limit?: number
-) => {
+export const useUser = (uid: string, limit?: number) => {
+  const [posts, setPosts] = useState<PostProps[]>([]);
   const [postIds, setPostIds] = useState<string[]>([]);
   const [toFetchIds, setToFetchIds] = useState<string[]>([]);
   const [requestedIds, setRequestedIds] = useState<string[]>([]);
@@ -38,6 +34,16 @@ export const useUser = (
         setError(true);
       });
   };
+
+  useEffect(() => {
+    setPosts([]);
+    setPostIds([]);
+    setToFetchIds([]);
+    setRequestedIds([]);
+    setToggle(false);
+    setEnd(true);
+    setError(false);
+  }, [uid]);
 
   useEffect(() => {
     const new_ids = posts
@@ -87,5 +93,5 @@ export const useUser = (
       setEnd(true);
   }, [posts, toFetchIds]);
 
-  return { setToggle, end, error };
+  return { posts, setPosts, setToggle, end, error };
 };
