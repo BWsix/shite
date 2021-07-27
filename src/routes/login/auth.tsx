@@ -5,7 +5,7 @@ import { auth } from "../../App";
 
 export const signIn = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithPopup(provider);
+  await auth.signInWithRedirect(provider);
 };
 
 export const signOut = async () => {

@@ -9,7 +9,7 @@ import {
 
 export const useUserInfo = (uid: string, withCover: boolean = false) => {
   const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("https://i.imgur.com/F1n20rR.png");
+  const [avatar, setAvatar] = useState("https://i.imgur.com/xicaprt.png");
   const [bio, setBio] = useState("");
   const [cover, setCover] = useState("https://i.imgur.com/PZxq3zy.png");
 
