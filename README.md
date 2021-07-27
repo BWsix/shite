@@ -2,6 +2,10 @@
 
 The Next Generation of Social Media created using create-react-app.
 
+![](https://i.imgur.com/zV4PA7K.png)
+
+<details><summary>Dev log</summary>
+
 ## TODO
 
 - **image uploader**
@@ -21,8 +25,6 @@ The Next Generation of Social Media created using create-react-app.
   - 1v1 chat
   - group chat
 - follower system
-
-## Dev log
 
 2021/7/27
 
@@ -107,3 +109,5 @@ refactor the entire(almost) project in the rest of the day
 - **post system**
 - navbar drop down menu
 - page styling
+
+</details>
