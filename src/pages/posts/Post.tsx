@@ -27,7 +27,7 @@ export const Post: React.FC<Props> = ({ _post, redirect }) => {
   const [post, setPost] = useState(() => _post);
   useEffect(() => {
     setPost(_post);
-    setEditedContent(_post.content);
+    setEditedContent(_post.content.replaceAll("n_n_", "\n"));
   }, [_post]);
 
   return (
