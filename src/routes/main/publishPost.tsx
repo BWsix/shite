@@ -7,7 +7,8 @@ import { db } from "../../App";
 export const publishPost = (
   uid: string,
   content: string = "",
-  image: string = ""
+  image: string = "",
+  markdown: boolean = false
 ) => {
   db.collection("posts")
     .add({
@@ -17,6 +18,7 @@ export const publishPost = (
       image: image,
       shiters: [],
       comments: [],
+      markdown: markdown,
     })
     .then((createdDoc) => {
       db.collection("activities").doc("posts").update({

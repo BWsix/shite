@@ -66,6 +66,7 @@ export const Post: React.FC<Props> = ({ _post, redirect }) => {
             <PostEditor
               editedContent={editedContent}
               setEditedContent={setEditedContent}
+              markdown={post.markdown}
             />
           ) : (
             <Content />

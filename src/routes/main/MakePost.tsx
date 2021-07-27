@@ -1,19 +1,21 @@
 import React, { useState, useContext } from "react";
 import Resizer from "react-image-file-resizer";
 
+import { publishPost } from "./publishPost";
+import { ImageUploader } from "./ImageUploader";
 import { UserContext } from "../../App";
 import { UserIcon, InputField } from "../../components/hub";
-import { publishPost } from "./publishPost";
 
 import "../../styles/button.css";
 import "../../pages/posts/Post.css";
-import { ImageUploader } from "./ImageUploader";
+import "../../pages/posts/Stats/Stats.css";
 
 export const MakePost: React.FC = () => {
   const user = useContext(UserContext);
 
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+  const [markdown, setMarkdown] = useState(false);
 
   const resizeFile = (file: File) =>
     new Promise((resolve) => {
@@ -35,9 +37,10 @@ export const MakePost: React.FC = () => {
     if (!content.trim().length && !image) {
       return setContent("");
     }
-    publishPost(user.uid, content, image);
+    publishPost(user.uid, content, image, markdown);
     setContent("");
     setImage("");
+    setMarkdown(false);
   };
 
   return (
@@ -68,9 +71,22 @@ export const MakePost: React.FC = () => {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <ImageUploader image_str={image} setImage_str={setImage} />
 
-            <button className="btn-thin btn-sharp" onClick={handle_publish}>
-              Publish
-            </button>
+            <div style={{ display: "flex" }}>
+              <button
+                className={`btn-thin btn-sharp ShiteCount-${
+                  markdown ? "trigger" : "btn"
+                }`}
+                onClick={() => setMarkdown((prev) => !prev)}
+              >
+                markdown({markdown ? "o" : "x"})
+              </button>
+              <button
+                className="btn-thin btn-sharp btn-left"
+                onClick={handle_publish}
+              >
+                Publish
+              </button>
+            </div>
           </div>
         </div>
       </div>

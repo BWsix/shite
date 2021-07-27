@@ -6,6 +6,7 @@ export interface PostProps {
   shiters: string[];
   createdAt: Date;
   comments: string[];
+  markdown: boolean;
 }
 
 export interface CommentProps {

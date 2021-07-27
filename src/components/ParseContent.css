@@ -8,7 +8,8 @@
   word-wrap: break-word;
 }
 
-.ParseContent-url {
+.ParseContent-url a,
+a:active {
   color: var(--color-url);
   text-decoration: underline;
 }

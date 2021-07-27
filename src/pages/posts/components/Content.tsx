@@ -10,7 +10,7 @@ export const Content: React.FC = () => {
 
   return (
     <div className="Post-content">
-      <ParseContent content={post.content} />
+      <ParseContent content={post.content} markdown={post.markdown} />
     </div>
   );
 };
