@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/shite/static/css/main.78487c18.chunk.css",
+    "main.js": "/shite/static/js/main.20fc48cf.chunk.js",
+    "main.js.map": "/shite/static/js/main.20fc48cf.chunk.js.map",
+    "runtime-main.js": "/shite/static/js/runtime-main.8246d277.js",
+    "runtime-main.js.map": "/shite/static/js/runtime-main.8246d277.js.map",
+    "static/js/2.f71e21db.chunk.js": "/shite/static/js/2.f71e21db.chunk.js",
+    "static/js/2.f71e21db.chunk.js.map": "/shite/static/js/2.f71e21db.chunk.js.map",
+    "static/css/3.a18779f9.chunk.css": "/shite/static/css/3.a18779f9.chunk.css",
+    "static/js/3.a931c836.chunk.js": "/shite/static/js/3.a931c836.chunk.js",
+    "static/js/3.a931c836.chunk.js.map": "/shite/static/js/3.a931c836.chunk.js.map",
+    "static/css/4.54d2f621.chunk.css": "/shite/static/css/4.54d2f621.chunk.css",
+    "static/js/4.2584fc68.chunk.js": "/shite/static/js/4.2584fc68.chunk.js",
+    "static/js/4.2584fc68.chunk.js.map": "/shite/static/js/4.2584fc68.chunk.js.map",
+    "index.html": "/shite/index.html",
+    "static/css/3.a18779f9.chunk.css.map": "/shite/static/css/3.a18779f9.chunk.css.map",
+    "static/css/4.54d2f621.chunk.css.map": "/shite/static/css/4.54d2f621.chunk.css.map",
+    "static/css/main.78487c18.chunk.css.map": "/shite/static/css/main.78487c18.chunk.css.map",
+    "static/js/2.f71e21db.chunk.js.LICENSE.txt": "/shite/static/js/2.f71e21db.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8246d277.js",
+    "static/js/2.f71e21db.chunk.js",
+    "static/css/main.78487c18.chunk.css",
+    "static/js/main.20fc48cf.chunk.js"
+  ]
+}
