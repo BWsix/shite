@@ -2,17 +2,15 @@
 
 The Next Generation of Social Media created using create-react-app.
 
-## In Progress
+## TODO
 
 - **image uploader**
   - dnd image uploader
-
-## TODO
-
 - comment section
   - comment edition
   - comment deletion
 - user icon hover info(popup)
+- visitor mode
 
 ## Next Step
 
@@ -26,21 +24,27 @@ The Next Generation of Social Media created using create-react-app.
 
 ## Dev log
 
+2021/7/27
+
+Maybe it is time to move on to the next project.
+
+- **post**
+  - post content markdown support
+
 2021/7/26
 
 - **user page**
   - bio
   - cover image
-- **image uploader**
-  - upload from clipboard
+- **post**
+  - upload image from clipboard
 
 2021/7/25
 
 - **comment section**
-  - upgrade
-    - infinite scroll up (view previous)
-    - "scroll to bottom" button
-    - highlight new comments
+  - infinite scroll up (view previous)
+  - "scroll to bottom" button
+  - highlight new comments
 - **user page**
   - all posts by the user
 
