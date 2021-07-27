@@ -30,6 +30,7 @@ Maybe it is time to move on to the next project.
 
 - **post**
   - post content markdown support
+  - youtube embed
 
 2021/7/26
 

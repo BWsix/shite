@@ -4,10 +4,10 @@ import { PostContext } from "./PostContext";
 import { UserContext } from "../../App";
 
 import { PostProps } from "./types";
-import { Content, Stats, Options, PostEditor } from "./hub";
+import { Content, Stats, Options, PostEditor, SharePost, Youtube } from "./hub";
 import { Comments } from "./comments/Comments";
-import { SharePost } from "./components/SharePost";
 import { UserIcon } from "../../components/hub";
+import { getYoutubeId } from "../../functions/getYoutubeId";
 
 import "./Post.css";
 import "../../styles/button.css";
@@ -81,6 +81,10 @@ export const Post: React.FC<Props> = ({ _post, redirect }) => {
               style={{ maxWidth: "100%", height: "auto" }}
             />
           </div>
+        )}
+
+        {!post.image.length && getYoutubeId(post.content) && (
+          <Youtube content={post.content} />
         )}
 
         <div className="Post-strike" />
