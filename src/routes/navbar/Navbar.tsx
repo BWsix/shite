@@ -26,6 +26,8 @@ export const Navbar: React.FC = () => {
           className="Menu-DropDown"
           onMouseEnter={() => setToggle(true)}
           onMouseLeave={() => setToggle(false)}
+          onFocus={() => setToggle(true)}
+          onBlur={() => setToggle(false)}
         >
           <UserIcon type="large" uid={user.uid} hover={true} />
           <Menu toggle={toggle} />
