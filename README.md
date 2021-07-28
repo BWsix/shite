@@ -1,10 +1,40 @@
-# Shite(/tester004_1)
+# Shite.
 
-The Next Generation of Social Media created using create-react-app.
+The Next Generation of Social Media created using create-react-app.\
+https://bwsix.github.io/shite/\
+and here's my [**Shite.** personal page](https://bwsix.github.io/shite/user/CaFMHgWplVUwzB1noFR3d6T6deN2)
+
+## Features / Screenshots
+
+### Customizable personal page
+
+![](https://i.imgur.com/UtyiXzS.png)
+
+### Markdown support & YouTube video auto embed
 
 ![](https://i.imgur.com/zV4PA7K.png)
 
+### Real-time comment section
+
+![](https://i.imgur.com/8fvBkHm.png)
+
+### Different color scheme
+
+![](https://i.imgur.com/HAu4d8k.png)
+
+## Special Thanks
+
+[@d071] for providing me ideas about the comment section update
+[@storiesbang] for helping me find out the bugs in the post system
+
+and everyone who joined **Shite.**
+
+[@d071]: https://github.com/d071 "d071's GitHub page"
+[@storiesbang]: https://github.com/storiesbang "storiesbang's GitHub page"
+
 <details><summary>Dev log</summary>
+
+**(I'm currently taking a break from this project.)**
 
 ## TODO
 
@@ -62,7 +92,7 @@ Maybe it is time to move on to the next project.
 
 2021/7/23
 
-minor changes/features in the morning  
+minor changes/features in the morning\
 refactor the entire(almost) project in the rest of the day
 
 - navbar auto hide when scroll down
