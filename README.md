@@ -56,6 +56,8 @@ and everyone who joined **Shite.**
   - group chat
 - follower system
 
+## Dev Log
+  
 2021/7/27
 
 Maybe it is time to move on to the next project.
