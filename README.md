@@ -1,7 +1,7 @@
 # Shite.
 
-The Next Generation of Social Media created using create-react-app.\
-https://bwsix.github.io/shite/\
+The Next Generation of Social Media created using create-react-app.  
+https://bwsix.github.io/shite/  
 and here's my [**Shite.** personal page](https://bwsix.github.io/shite/user/CaFMHgWplVUwzB1noFR3d6T6deN2)
 
 ## Features / Screenshots
@@ -24,8 +24,8 @@ and here's my [**Shite.** personal page](https://bwsix.github.io/shite/user/CaFM
 
 ## Special Thanks
 
-[@d071] for providing me ideas about the comment section update
-[@storiesbang] for helping me find out the bugs in the post system
+[@d071] for providing me ideas about the comment section update  
+[@storiesbang] for helping me find out the bugs in the post system  
 
 and everyone who joined **Shite.**
 
@@ -92,7 +92,7 @@ Maybe it is time to move on to the next project.
 
 2021/7/23
 
-minor changes/features in the morning\
+minor changes/features in the morning  
 refactor the entire(almost) project in the rest of the day
 
 - navbar auto hide when scroll down
