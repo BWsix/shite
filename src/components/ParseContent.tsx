@@ -19,7 +19,11 @@ export const ParseContent: React.FC<ParseContentProps> = ({
     <>
       {markdown ? (
         <div className="ParseContent-url">
-          <ReactMarkdown children={content.replaceAll("n_n_", "\n\n&nbsp;")} />
+          <ReactMarkdown
+            children={content
+              .replaceAll("n_n_n_n_", "\n\n&nbsp;\n\n")
+              .replaceAll("n_n_", "\n\n")}
+          />
         </div>
       ) : (
         content.split("n_n_").map((line) => (

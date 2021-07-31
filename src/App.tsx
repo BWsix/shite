@@ -32,7 +32,7 @@ export const UserContext = React.createContext<firebase.User>(
 
 const App: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
-  const POSTS = useGetPrevPosts();
+  const POSTS = useGetPrevPosts(user);
 
   if (error) return <Status content="Error" />;
   if (loading) return <Status content="Loading" />;
