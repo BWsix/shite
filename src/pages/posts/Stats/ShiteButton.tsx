@@ -19,6 +19,11 @@ export const ShiteButton: React.FC = () => {
         shite ? "ShiteCount-trigger" : ""
       }`}
       onClick={() => {
+        if (user.isAnonymous) {
+          window.alert("login with google and give this post a shite!");
+          return;
+        }
+
         updateShite(user.uid, post.postId, shite ? "unshite" : "shite");
         setShite((prev) => !prev);
       }}

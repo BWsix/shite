@@ -12,3 +12,13 @@ export const signOut = async () => {
   await auth.signOut();
   window.location.reload();
 };
+
+export const signInAnonymously = () => {
+  auth.signInAnonymously();
+};
+
+export const loginWithGoogle = async () => {
+  await auth.signOut();
+  await signIn();
+  window.location.reload();
+};

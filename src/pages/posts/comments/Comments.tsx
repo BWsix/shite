@@ -4,14 +4,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Comment } from "./Comment";
 import { AddComment } from "./AddComment";
 import { useComments } from "../hooks/hub";
+import { UserContext } from "../../../App";
 import { PostContext } from "../PostContext";
-import { Status } from "../../../components/hub";
+import { Status, PleaseLogin } from "../../../components/hub";
 
 import "./Comments.css";
 import "../Post.css";
 import "../../../styles/button.css";
 
 export const Comments: React.FC = () => {
+  const user = useContext(UserContext);
   const { post, setPost } = useContext(PostContext);
   const { comments, setToggle, end, error } = useComments(post.postId, setPost);
 
@@ -89,7 +91,11 @@ export const Comments: React.FC = () => {
       </div>
 
       <div className="Post">
-        <AddComment postId={post.postId} />
+        {user.isAnonymous ? (
+          <PleaseLogin content="leave a comment!" />
+        ) : (
+          <AddComment postId={post.postId} />
+        )}
       </div>
     </>
   );

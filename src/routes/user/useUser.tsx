@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import firebase from "firebase/app";
 
 import { PostProps } from "../../pages/posts/types";
+import { db } from "../../App";
 
-export const useUser = (uid: string, limit?: number) => {
+export const useUser = (uid: string, user: firebase.User, limit?: number) => {
+  const [noUser, setNoUser] = useState(false);
+
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [postIds, setPostIds] = useState<string[]>([]);
   const [toFetchIds, setToFetchIds] = useState<string[]>([]);
@@ -15,9 +18,7 @@ export const useUser = (uid: string, limit?: number) => {
   const [error, setError] = useState(false);
 
   const append_post = (id: string) => {
-    firebase
-      .firestore()
-      .collection("posts")
+    db.collection("posts")
       .doc(id)
       .get()
       .then((doc) => {
@@ -46,14 +47,17 @@ export const useUser = (uid: string, limit?: number) => {
   }, [uid]);
 
   useEffect(() => {
+    if (uid === user.uid && user.isAnonymous) {
+      setNoUser(true);
+      return;
+    }
+
     const new_ids = posts
       .map((post) => post.postId)
       .filter((id) => !postIds.includes(id));
     setRequestedIds((prev) => [...new_ids, ...prev]);
 
-    firebase
-      .firestore()
-      .collection("users")
+    db.collection("users")
       .doc(uid)
       .get()
       .then((doc) => {
@@ -93,5 +97,5 @@ export const useUser = (uid: string, limit?: number) => {
       setEnd(true);
   }, [posts, toFetchIds]);
 
-  return { posts, setPosts, setToggle, end, error };
+  return { posts, setPosts, setToggle, end, noUser, error };
 };

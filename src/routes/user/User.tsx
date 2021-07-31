@@ -5,9 +5,9 @@ import { useUser } from "./useUser";
 import { Banner } from "./Banner/Banner";
 import { MakePost } from "../main/MakePost";
 import { UserContext } from "../../App";
-import { Status } from "../../components/Status";
 import { Post } from "../../pages/posts/Post";
 import { useListener } from "../../pages/posts/hooks/useListener";
+import { Status, PleaseLogin } from "../../components/hub";
 
 interface UserProps {
   uid: string;
@@ -17,10 +17,18 @@ export const User: React.FC<UserProps> = ({ uid }) => {
   const user = useContext(UserContext);
   const isOwner = uid === user.uid;
 
-  const { posts, setPosts, setToggle, end, error } = useUser(uid);
+  const { posts, setPosts, setToggle, end, noUser, error } = useUser(uid, user);
   useListener(posts, setPosts);
 
   if (error) return <Status content="error" />;
+
+  if (noUser)
+    return (
+      <>
+        <br />
+        <PleaseLogin content="view your own page!" />
+      </>
+    );
 
   return (
     <>
