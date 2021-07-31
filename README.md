@@ -25,7 +25,7 @@ and here's my [**Shite.** personal page](https://bwsix.github.io/shite/user/CaFM
 ## Special Thanks
 
 [@d071] for providing me ideas about the comment section update  
-[@storiesbang] for helping me find out the bugs in the post system  
+[@storiesbang] for helping me find out the bugs in the post system
 
 and everyone who joined **Shite.**
 
@@ -57,7 +57,13 @@ and everyone who joined **Shite.**
 - follower system
 
 ## Dev Log
-  
+
+2021/7/31
+
+Playing around with socket.io in the past 2 days.
+
+- "Login Anonymously"
+
 2021/7/27
 
 Maybe it is time to move on to the next project.
